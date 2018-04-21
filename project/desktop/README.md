@@ -6,3 +6,5 @@
 
 # 3 build
  npm run packager-win (windows)
+ 
+ https://blog.csdn.net/suwu150/article/details/65627285
