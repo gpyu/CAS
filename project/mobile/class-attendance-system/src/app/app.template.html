@@ -5,7 +5,7 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>菜单</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -13,7 +13,7 @@
 
       <ion-list>
         <ion-list-header>
-          Navigate
+          导航
         </ion-list-header>
         <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
@@ -23,7 +23,7 @@
 
       <ion-list>
         <ion-list-header>
-          Account
+          帐号
         </ion-list-header>
         <button ion-item menuClose *ngFor="let p of loggedOutPages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
@@ -33,7 +33,7 @@
 
       <ion-list>
         <ion-list-header>
-          Tutorial
+          其他
         </ion-list-header>
         <button ion-item menuClose (click)="openTutorial()">
           <ion-icon item-start name="hammer"></ion-icon>
@@ -49,7 +49,7 @@
 
     <ion-header>
       <ion-toolbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>菜单</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -57,7 +57,7 @@
 
       <ion-list>
         <ion-list-header>
-          Navigate
+         导航
         </ion-list-header>
         <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
@@ -67,7 +67,7 @@
 
       <ion-list>
         <ion-list-header>
-          Account
+          个人信息
         </ion-list-header>
         <button ion-item menuClose *ngFor="let p of loggedInPages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
@@ -77,7 +77,7 @@
 
       <ion-list>
         <ion-list-header>
-          Tutorial
+          其他
         </ion-list-header>
         <button ion-item menuClose (click)="openTutorial()">
           <ion-icon item-start name="hammer"></ion-icon>

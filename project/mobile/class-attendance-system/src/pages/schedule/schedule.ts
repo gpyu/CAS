@@ -85,16 +85,16 @@ export class SchedulePage {
     if (this.user.hasFavorite(sessionData.name)) {
       // woops, they already favorited it! What shall we do!?
       // prompt them to remove it
-      this.removeFavorite(slidingItem, sessionData, 'Favorite already added');
+      this.removeFavorite(slidingItem, sessionData, '已经收藏');
     } else {
       // remember this session as a user favorite
       this.user.addFavorite(sessionData.name);
 
       // create an alert instance
       let alert = this.alertCtrl.create({
-        title: 'Favorite Added',
+        title: '收藏成功',
         buttons: [{
-          text: 'OK',
+          text: '确定',
           handler: () => {
             // close the sliding item
             slidingItem.close();
@@ -110,10 +110,10 @@ export class SchedulePage {
   removeFavorite(slidingItem: ItemSliding, sessionData: any, title: string) {
     let alert = this.alertCtrl.create({
       title: title,
-      message: 'Would you like to remove this session from your favorites?',
+      message: '确定从收藏夹中移除吗?',
       buttons: [
         {
-          text: 'Cancel',
+          text: '取消',
           handler: () => {
             // they clicked the cancel button, do not remove the session
             // close the sliding item and hide the option buttons
@@ -121,7 +121,7 @@ export class SchedulePage {
           }
         },
         {
-          text: 'Remove',
+          text: '移除',
           handler: () => {
             // they want to remove this session from their favorites
             this.user.removeFavorite(sessionData.name);
