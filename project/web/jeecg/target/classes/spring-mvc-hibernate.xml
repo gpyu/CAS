@@ -15,6 +15,7 @@
 	<context:component-scan base-package="org.jeecgframework.core.common.dao.*" />
 	<context:component-scan base-package="org.jeecgframework.core.common.service.*" />
 	<context:component-scan base-package="org.jeecgframework.jwt.service.*"/>
+	<context:component-scan base-package="com.cas.*" />
 	<context:component-scan base-package="com.jeecg.*">
 			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
@@ -111,6 +112,7 @@
 				<value>org.jeecgframework.web.graphreport.entity.*</value>
 				<value>org.jeecgframework.web.system.sms.*</value>
 				<value>com.jeecg.*</value>
+				<value>com.cas.*</value>
 			</list>
 		</property>
 	</bean>
