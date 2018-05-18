@@ -20,7 +20,7 @@ public class Job {
     /**
      * 每天1点执行一次
      * */
-    @Scheduled(cron="0 0 1 * * ?") 
+   /* @Scheduled(cron="0 0 1 * * ?") */
     public void oneOClockPerDay(){
         org.jeecgframework.core.util.LogUtil.info("1h");
     }

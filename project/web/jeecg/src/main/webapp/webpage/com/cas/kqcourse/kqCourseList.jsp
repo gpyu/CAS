@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="kqCourseList" title="课程管理" actionUrl="kqCourseController.do?datagrid" idField="id" fit="true">
+  <t:datagrid name="kqCourseList" title="阿萨德" actionUrl="kqCourseController.do?datagrid" idField="id" fit="true">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
    <t:dgCol title="课程名称" field="courseName"   width="120"></t:dgCol>
    <t:dgCol title="课程编号" field="courseNum"   width="120"></t:dgCol>

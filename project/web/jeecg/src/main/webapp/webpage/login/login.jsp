@@ -85,12 +85,12 @@
 									<i class="ace-icon fa fa-lock"></i>
 								</span>
                       </label>
-                      <label class="block clearfix">
+                      <!-- <label class="block clearfix">
                         <div class="input-group">
                           <input type="text" style="width:150px" name="randCode" class="form-control" placeholder="请输入验证码"  id="randCode"/>
                           <span class="input-group-addon" style="padding: 0px;"><img id="randCodeImage" src="randCodeImage"  /></span>
                         </div>
-                      </label>
+                      </label> -->
                       <div class="space"></div>
                       <div class="clearfix">
                         <!-- <label class="inline">
@@ -192,10 +192,10 @@
       return false;
     }
 
-    if($.trim($("#randCode").val()).length==0){
+    /* if($.trim($("#randCode").val()).length==0){
       showErrorMsg("请输入验证码");
       return false;
-    }
+    } */
     return true;
   }
 

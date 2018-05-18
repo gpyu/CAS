@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>课程管理</title>
+  <title>阿萨德</title>
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
  </head>
  <body style="overflow-y: hidden" scroll="no">

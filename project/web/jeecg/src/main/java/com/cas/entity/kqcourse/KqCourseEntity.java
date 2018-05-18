@@ -17,9 +17,9 @@ import javax.persistence.SequenceGenerator;
 
 /**   
  * @Title: Entity
- * @Description: 课程管理
+ * @Description: 阿萨德
  * @author zhangdaihao
- * @date 2018-05-02 21:01:00
+ * @date 2018-05-05 14:54:13
  * @version V1.0   
  *
  */

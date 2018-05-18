@@ -262,7 +262,7 @@ public class LoginController extends BaseController{
 		
 		//验证码
 		String randCode = req.getParameter("randCode");
-		if (StringUtils.isEmpty(randCode)) {
+		/*if (StringUtils.isEmpty(randCode)) {
 			j.setMsg(mutiLangService.getLang("common.enter.verifycode"));
 			j.setSuccess(false);
 		} else if (!randCode.equalsIgnoreCase(String.valueOf(session.getAttribute("randCode")))) {
@@ -272,7 +272,7 @@ public class LoginController extends BaseController{
 			j.setMsg(mutiLangService.getLang("common.blacklist.error"));
 			j.setSuccess(false);
 		}
-		else {
+		else {*/
 			//用户登录验证逻辑
 			TSUser u = userService.checkUserExits(user);
 			if (u == null) {
@@ -309,7 +309,7 @@ public class LoginController extends BaseController{
 
 				j.setSuccess(false);
 			}
-		}
+		/*}*/
 		return j;
 	}
 	private boolean isInBlackList(String ip){

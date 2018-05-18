@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.jwt.service.TokenManager;
@@ -17,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +45,9 @@ public class TokenController {
 	@ApiOperation(value = "获取TOKEN")
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
+	public ResponseEntity<?> login(@RequestBody Map<String,Object> map) {
+		String username  = map.get("username").toString();
+		String password = map.get("password").toString();
 		logger.info("获取TOKEN[{}]" + username);
 		// 验证
 		if (StringUtils.isEmpty(username)) {

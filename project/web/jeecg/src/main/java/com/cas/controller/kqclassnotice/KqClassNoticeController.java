@@ -1,4 +1,4 @@
-package com.cas.controller.kqcourse;
+package com.cas.controller.kqclassnotice;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.core.util.MyBeanUtils;
 
-import com.cas.entity.kqcourse.KqCourseEntity;
-import com.cas.service.kqcourse.KqCourseServiceI;
+import com.cas.entity.kqclassnotice.KqClassNoticeEntity;
+import com.cas.service.kqclassnotice.KqClassNoticeServiceI;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -45,22 +45,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 /**   
  * @Title: Controller
- * @Description: 阿萨德
+ * @Description: 班级公告
  * @author zhangdaihao
- * @date 2018-05-05 14:54:13
+ * @date 2018-05-05 09:53:10
  * @version V1.0   
  *
  */
 @Controller
-@RequestMapping("/kqCourseController")
-public class KqCourseController extends BaseController {
+@RequestMapping("/kqClassNoticeController")
+public class KqClassNoticeController extends BaseController {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(KqCourseController.class);
+	private static final Logger logger = Logger.getLogger(KqClassNoticeController.class);
 
 	@Autowired
-	private KqCourseServiceI kqCourseService;
+	private KqClassNoticeServiceI kqClassNoticeService;
 	@Autowired
 	private SystemService systemService;
 	@Autowired
@@ -69,13 +69,13 @@ public class KqCourseController extends BaseController {
 
 
 	/**
-	 * 阿萨德列表 页面跳转
+	 * 班级公告列表 页面跳转
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/cas/kqcourse/kqCourseList");
+		return new ModelAndView("com/cas/kqclassnotice/kqClassNoticeList");
 	}
 
 	/**
@@ -88,27 +88,27 @@ public class KqCourseController extends BaseController {
 	 */
 
 	@RequestMapping(params = "datagrid")
-	public void datagrid(KqCourseEntity kqCourse,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(KqCourseEntity.class, dataGrid);
+	public void datagrid(KqClassNoticeEntity kqClassNotice,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		CriteriaQuery cq = new CriteriaQuery(KqClassNoticeEntity.class, dataGrid);
 		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, kqCourse, request.getParameterMap());
-		this.kqCourseService.getDataGridReturn(cq, true);
+		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, kqClassNotice, request.getParameterMap());
+		this.kqClassNoticeService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
 
 	/**
-	 * 删除阿萨德
+	 * 删除班级公告
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "del")
 	@ResponseBody
-	public AjaxJson del(KqCourseEntity kqCourse, HttpServletRequest request) {
+	public AjaxJson del(KqClassNoticeEntity kqClassNotice, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		kqCourse = systemService.getEntity(KqCourseEntity.class, kqCourse.getId());
-		message = "阿萨德删除成功";
-		kqCourseService.delete(kqCourse);
+		kqClassNotice = systemService.getEntity(KqClassNoticeEntity.class, kqClassNotice.getId());
+		message = "班级公告删除成功";
+		kqClassNoticeService.delete(kqClassNotice);
 		systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		
 		j.setMsg(message);
@@ -117,30 +117,30 @@ public class KqCourseController extends BaseController {
 
 
 	/**
-	 * 添加阿萨德
+	 * 添加班级公告
 	 * 
 	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "save")
 	@ResponseBody
-	public AjaxJson save(KqCourseEntity kqCourse, HttpServletRequest request) {
+	public AjaxJson save(KqClassNoticeEntity kqClassNotice, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		if (StringUtil.isNotEmpty(kqCourse.getId())) {
-			message = "阿萨德更新成功";
-			KqCourseEntity t = kqCourseService.get(KqCourseEntity.class, kqCourse.getId());
+		if (StringUtil.isNotEmpty(kqClassNotice.getId())) {
+			message = "班级公告更新成功";
+			KqClassNoticeEntity t = kqClassNoticeService.get(KqClassNoticeEntity.class, kqClassNotice.getId());
 			try {
-				MyBeanUtils.copyBeanNotNull2Bean(kqCourse, t);
-				kqCourseService.saveOrUpdate(t);
+				MyBeanUtils.copyBeanNotNull2Bean(kqClassNotice, t);
+				kqClassNoticeService.saveOrUpdate(t);
 				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 			} catch (Exception e) {
 				e.printStackTrace();
-				message = "阿萨德更新失败";
+				message = "班级公告更新失败";
 			}
 		} else {
-			message = "阿萨德添加成功";
-			kqCourseService.save(kqCourse);
+			message = "班级公告添加成功";
+			kqClassNoticeService.save(kqClassNotice);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}
 		j.setMsg(message);
@@ -148,30 +148,30 @@ public class KqCourseController extends BaseController {
 	}
 
 	/**
-	 * 阿萨德列表页面跳转
+	 * 班级公告列表页面跳转
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "addorupdate")
-	public ModelAndView addorupdate(KqCourseEntity kqCourse, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(kqCourse.getId())) {
-			kqCourse = kqCourseService.getEntity(KqCourseEntity.class, kqCourse.getId());
-			req.setAttribute("kqCoursePage", kqCourse);
+	public ModelAndView addorupdate(KqClassNoticeEntity kqClassNotice, HttpServletRequest req) {
+		if (StringUtil.isNotEmpty(kqClassNotice.getId())) {
+			kqClassNotice = kqClassNoticeService.getEntity(KqClassNoticeEntity.class, kqClassNotice.getId());
+			req.setAttribute("kqClassNoticePage", kqClassNotice);
 		}
-		return new ModelAndView("com/cas/kqcourse/kqCourse");
+		return new ModelAndView("com/cas/kqclassnotice/kqClassNotice");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<KqCourseEntity> list() {
-		List<KqCourseEntity> listKqCourses=kqCourseService.getList(KqCourseEntity.class);
-		return listKqCourses;
+	public List<KqClassNoticeEntity> list() {
+		List<KqClassNoticeEntity> listKqClassNotices=kqClassNoticeService.getList(KqClassNoticeEntity.class);
+		return listKqClassNotices;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
-		KqCourseEntity task = kqCourseService.get(KqCourseEntity.class, id);
+		KqClassNoticeEntity task = kqClassNoticeService.get(KqClassNoticeEntity.class, id);
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
@@ -180,19 +180,19 @@ public class KqCourseController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody KqCourseEntity kqCourse, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<?> create(@RequestBody KqClassNoticeEntity kqClassNotice, UriComponentsBuilder uriBuilder) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<KqCourseEntity>> failures = validator.validate(kqCourse);
+		Set<ConstraintViolation<KqClassNoticeEntity>> failures = validator.validate(kqClassNotice);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
 		//保存
-		kqCourseService.save(kqCourse);
+		kqClassNoticeService.save(kqClassNotice);
 
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		String id = kqCourse.getId();
-		URI uri = uriBuilder.path("/rest/kqCourseController/" + id).build().toUri();
+		String id = kqClassNotice.getId();
+		URI uri = uriBuilder.path("/rest/kqClassNoticeController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 
@@ -200,15 +200,15 @@ public class KqCourseController extends BaseController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@RequestBody KqCourseEntity kqCourse) {
+	public ResponseEntity<?> update(@RequestBody KqClassNoticeEntity kqClassNotice) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<KqCourseEntity>> failures = validator.validate(kqCourse);
+		Set<ConstraintViolation<KqClassNoticeEntity>> failures = validator.validate(kqClassNotice);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
 		//保存
-		kqCourseService.saveOrUpdate(kqCourse);
+		kqClassNoticeService.saveOrUpdate(kqClassNotice);
 
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -217,6 +217,6 @@ public class KqCourseController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
-		kqCourseService.deleteEntityById(KqCourseEntity.class, id);
+		kqClassNoticeService.deleteEntityById(KqClassNoticeEntity.class, id);
 	}
 }
