@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import {DataService} from "./data-service/data-service";
 import {Http} from "@angular/http";
 
 
@@ -9,13 +10,13 @@ import {Http} from "@angular/http";
 export class UserData {
   _favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
-  HAS_LOGIN_TOKEN = 'HAS_LOGIN_TOKEN';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
-  private API_URL = 'http://localhost:8080/jeecg/rest/'
+  TOKENS = 'tokens';
   constructor(
     public events: Events,
     public storage: Storage,
-    public http: Http
+    public http: Http,
+    public dataService: DataService
   ) {}
 
   hasFavorite(sessionName: string): boolean {
@@ -33,27 +34,13 @@ export class UserData {
     }
   };
 
-  login(username: string, password: string) {
-    return new Promise((resolve, reject) => {
-      var data = {
-        username: username,
-        password: password
-      };
-      this.http.post(this.API_URL + 'tokens', data).subscribe((result: any) => {
-            resolve(result.json());
-          },
-          (error) => {
-            reject(error.json());
-          });
-    });
-  }
-  /*
-  login(username: string): void {
+  login(username: string, tokens:string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
+    this.storage.set(this.TOKENS, tokens);
     this.events.publish('user:login');
   };
-*/
+
   signup(username: string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
@@ -88,18 +75,9 @@ export class UserData {
     });
   };
 
-  setToken(token: string): void {
-    this.storage.set(this.HAS_LOGGED_IN, true);
-    this.storage.set(this.HAS_LOGIN_TOKEN, token);
-  };
-  getToken(): Promise<string> {
-    return this.storage.get(this.HAS_LOGIN_TOKEN).then((value) => {
+  getTokens(): Promise<string>{
+    return this.storage.get(this.TOKENS).then((value)=>{
       return value;
     });
-  };
-  isLogin():Promise<string> {
-    return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
-      return value;
-    });
-  };
+  }
 }

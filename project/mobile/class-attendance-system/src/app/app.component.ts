@@ -18,6 +18,7 @@ import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { Observable } from 'rxjs/Observable';
 
 export interface PageInterface {
   title: string;
@@ -68,11 +69,19 @@ export class ConferenceApp {
     public storage: Storage,
     public splashScreen: SplashScreen
   ) {
+
+    
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
-          this.rootPage = LoginPage;
+          this.storage.get('hasLoggedIn').then((hasLoggedIn)=>{
+            if(hasLoggedIn){
+              this.rootPage = TabsPage;
+            }else{
+              this.rootPage = LoginPage;
+            }
+          })
         } else {
           this.rootPage = TutorialPage;
         }

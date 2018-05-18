@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
-
+import { Network } from '@ionic-native/network';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -28,6 +28,8 @@ import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { DataService } from '../providers/data-service/data-service';
+import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 
 
 @NgModule({
@@ -93,7 +95,10 @@ import { UserData } from '../providers/user-data';
     ConferenceData,
     UserData,
     InAppBrowser,
-    SplashScreen
+    SplashScreen,
+    Network,
+    DataService,
+    LocalStorageProvider
   ]
 })
 export class AppModule { }
