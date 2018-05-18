@@ -7,20 +7,22 @@ import { UserData } from './user-data';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
+import { DataService } from './data-service/data-service';
 
 
 @Injectable()
 export class ConferenceData {
   data: any;
 
-  constructor(public http: Http, public user: UserData) { }
+  constructor(public http: Http, public user: UserData, public dateService:DataService) { }
 
   load(): any {
     if (this.data) {
       return Observable.of(this.data);
     } else {
-      return this.http.get('assets/data/data.json')
-        .map(this.processData, this);
+      this.data = this.http.get('http://localhost:8080/jeecg/rest/classNotice');
+      console.log(this.data);
+      return this.data;
     }
   }
 

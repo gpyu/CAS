@@ -2,6 +2,7 @@ package org.jeecgframework.web.rest.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cas.entity.kqclassnotice.KqClassNoticeEntity;
 import com.cas.service.kqclassnotice.KqClassNoticeServiceI;
 
@@ -63,8 +65,20 @@ public class ClassNoticeRestController {
 
 	@ApiOperation(value="班级公告信息",produces="application/json",httpMethod="GET")
 
-	public List<KqClassNoticeEntity> list() {
-		List<KqClassNoticeEntity> kqClassesList =kqClassNoticeService.getAllList();
+	public List<Map<String,Object>> list() {
+		String sql = " select  "
+				+" a.id id, "
+				+" DATE_FORMAT(a.time,'%Y-%m-%d') date, "
+				+" DATE_FORMAT(a.time,'%Y-%m-%d') time, "
+				+" a.title name, "
+				+" '' location, "
+				+" a.content description, "
+				+" a.create_name speakerNames, "
+				+" DATE_FORMAT(a.time,'%Y-%m-%d') timeStart, "
+				+" DATE_FORMAT(a.time,'%Y-%m-%d') timeEnd, "
+				+" '' tracks "
+				+" from kq_class_notice a order by DATE_FORMAT(a.time,'%Y-%m-%d') desc";
+		List<Map<String,Object>> kqClassesList =kqClassNoticeService.findForJdbc(sql);
 		return kqClassesList;
 	}
 

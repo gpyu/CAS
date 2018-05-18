@@ -3,38 +3,40 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-title>班级公告</ion-title>
 
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        All
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Favorites
-      </ion-segment-button>
-    </ion-segment>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
-    <ion-searchbar color="primary"
-                   [(ngModel)]="queryText"
-                   (ionInput)="updateSchedule()"
-                   placeholder="Search">
-    </ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-list *ngFor="let session of shownSessions">
 
-  <ion-list #scheduleList [hidden]="shownSessions === 0">
+    <ion-item-group>
+
+      <ion-item-divider sticky>
+        <ion-label>
+          {{session.name}}
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-sliding>
+
+        <button ion-item>
+          <h3>{{session.time}}</h3>
+          <p>
+            {{session.description}}
+          </p>
+        </button>
+      </ion-item-sliding>
+
+    </ion-item-group>
+
+  </ion-list>
+  <!--<ion-list #scheduleList [hidden]="shownSessions === 0">
 
     <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
 
@@ -57,10 +59,10 @@
 
         <ion-item-options>
           <button ion-button color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
-            Favorite
+            收藏
           </button>
           <button ion-button color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
-            Remove
+            移除
           </button>
         </ion-item-options>
 
@@ -68,11 +70,11 @@
 
     </ion-item-group>
 
-  </ion-list>
+  </ion-list>-->
 
-  <ion-list-header [hidden]="shownSessions > 0">
+  <!--<ion-list-header [hidden]="shownSessions > 0">
       No Sessions Found
-  </ion-list-header>
+  </ion-list-header>-->
 
   <ion-fab bottom right #fab>
     <button ion-fab><ion-icon name="share"></ion-icon></button>

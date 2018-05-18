@@ -11,7 +11,7 @@ import { TabsPage } from '../tabs-page/tabs-page';
 import { SignupPage } from '../signup/signup';
 import {ToastController} from "_ionic-angular@3.9.2@ionic-angular/components/toast/toast-controller";
 import { DataService } from '../../providers/data-service/data-service';
-
+import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-user',
@@ -24,19 +24,24 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public userData: UserData,
               public dataService:DataService,
               private toast: ToastController,
+              public loadingCtrl: LoadingController
             ) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
-    alert(this.login);
     if (form.valid) {
-      
+      let loader = this.loadingCtrl.create({
+        content: "登录中...",
+        duration: 30000
+      });
+      loader.present();
       this.dataService.login(this.login.username,this.login.password).then((result: any) => {
+        loader.dismiss();
         this.toast.create({ message: '登录成功', position: 'botton', duration: 3000 }).present();
         this.userData.login(this.login.username,result);
         this.navCtrl.push(TabsPage);
       }).catch((error: any) => {
-        this.toast.create({ message: error.toString(), duration: 3000 }).present();
+        this.toast.create({ message: '抱歉，网络异常：'+error.toString(), duration: 3000 }).present();
     });
     }
   }

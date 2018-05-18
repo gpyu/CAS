@@ -18,7 +18,7 @@ import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 
 export interface PageInterface {
   title: string;
@@ -78,6 +78,8 @@ export class ConferenceApp {
           this.storage.get('hasLoggedIn').then((hasLoggedIn)=>{
             if(hasLoggedIn){
               this.rootPage = TabsPage;
+              // load the conference data
+               confData.load();
             }else{
               this.rootPage = LoginPage;
             }
@@ -88,8 +90,7 @@ export class ConferenceApp {
         this.platformReady()
       });
 
-    // load the conference data
-    confData.load();
+    
 
     // decide which menu items should be hidden by current login status stored in local storage
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
