@@ -2,3 +2,7 @@
 需求文档/需求文档.docx
 project/web/jeecg/.project
 project/web/jeecg/.classpath
+project/web/jeecg/target
+project/web/jeecg/target/classes/jeecg/jeecg_config.properties
+project/web/jeecg/target/classes/spring-mvc-hibernate.xml
+project/web/jeecg/target/classes/spring-mvc.xml
