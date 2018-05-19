@@ -20,7 +20,7 @@ export class ConferenceData {
     if (this.data) {
       return Observable.of(this.data);
     } else {
-      this.data = this.http.get('http://localhost:8080/jeecg/rest/classNotice');
+      this.data = this.http.get('/rest/classNotice');
       console.log(this.data);
       return this.data;
     }

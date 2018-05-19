@@ -17,8 +17,8 @@ import 'rxjs/add/operator/mergeMap';
 export class DataService {
 
   // Base Url for API
-  private baseUrl: string = (location.hostname === "localhost") ? 'http://localhost:8080/jeecg/rest/' : 'http://app.com/api/';
-
+  //private baseUrl: string = (location.hostname === "localhost") ? 'http://172.17.170.164:8080/jeecg/rest/' : 'http://172.17.170.164:8080/jeecg/rest/';
+  private baseUrl: string = (location.hostname === "localhost") ? 'http://47.106.117.191/rest/' : 'http://47.106.117.191/rest/';
   // Spinner for loader
   private spinner: Loading;
 
