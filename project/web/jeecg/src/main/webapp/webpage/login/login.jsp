@@ -81,7 +81,7 @@
                       </label>
                       <label class="block clearfix">
 								<span class="block input-icon input-icon-right">
-									<input type="password" name="password" class="form-control" placeholder="请输入密码" id="password" value="123456"/>
+									<input type="password" name="password" class="form-control" placeholder="请输入密码" id="password" value=""/>
 									<i class="ace-icon fa fa-lock"></i>
 								</span>
                       </label>
