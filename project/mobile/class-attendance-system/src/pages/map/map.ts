@@ -1,11 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-
-//import { ConferenceData } from '../../providers/conference-data';
-
-//import { Platform } from 'ionic-angular';
-
-
-// declare var google: any;
+import { MapOptions } from 'angular2-baidu-map';
 
 
 @Component({
@@ -13,45 +7,61 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
   templateUrl: 'map.html'
 })
 export class MapPage {
-
+  opts: MapOptions;
+  latitude = 31.245554;
+  longitude = 121.506191;
+  aa = '123123';
   @ViewChild('mapCanvas') mapElement: ElementRef;
-  constructor(
-    //public confData: ConferenceData, 
-    //public platform: Platform
-  ) {
+  constructor() {
+    this.opts = {
+      centerAndZoom: {
+        lng: this.longitude,
+        lat: this.latitude,
+        zoom: 15
+      }
+    }
+    
+    // lng: 119.197302,
+    // lat: 26.065064,
   }
-
   ionViewDidLoad() {
-
-      // this.confData.getMap().subscribe((mapData: any) => {
-      //   let mapEle = this.mapElement.nativeElement;
-
-      //   let map = new google.maps.Map(mapEle, {
-      //     center: mapData.find((d: any) => d.center),
-      //     zoom: 16
-      //   });
-
-      //   mapData.forEach((markerData: any) => {
-      //     let infoWindow = new google.maps.InfoWindow({
-      //       content: `<h5>${markerData.name}</h5>`
-      //     });
-
-      //     let marker = new google.maps.Marker({
-      //       position: markerData,
-      //       map: map,
-      //       title: markerData.name
-      //     });
-
-      //     marker.addListener('click', () => {
-      //       infoWindow.open(map, marker);
-      //     });
-      //   });
-
-      //   google.maps.event.addListenerOnce(map, 'idle', () => {
-      //     mapEle.classList.add('show-map');
-      //   });
-
-      // });
+    var onError = function (error) {
+      alert('code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
+    };
+    var onSuccess = function (position) {
+      let opts = {
+        centerAndZoom: {
+          lng: position.coords.longitude.toFixed(6),
+          lat: position.coords.latitude.toFixed(6),
+          zoom: 15
+        }
+      };
+    }
+    let a = '';
+    let l = '';
+    navigator.geolocation.getCurrentPosition((position)=>{
+      console.log(position.coords.longitude.toFixed(6));
+      a = position.coords.longitude.toFixed(6);
+      l = position.coords.latitude.toFixed(6);
+      console.log(position.coords.latitude.toFixed(6));
+    },onError);
 
   }
+
 }
+// opts = {
+//   centerAndZoom: {
+//     lng: position.coords.longitude.toFixed(6),
+//     lat: position.coords.latitude.toFixed(6),
+//     zoom: 15
+//   }
+// };
+
+      // alert('Latitude: ' + position.coords.latitude + '\n' +
+      //   'Longitude: ' + position.coords.longitude + '\n' +
+      //   'Altitude: ' + position.coords.altitude + '\n' +
+      //   'Accuracy: ' + position.coords.accuracy + '\n' +
+      //   'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+      //   'Heading: ' + position.coords.heading + '\n' +
+      //   'Speed: ' + position.coords.speed + '\n' +
+      //   'Timestamp: ' + position.timestamp + '\n');
