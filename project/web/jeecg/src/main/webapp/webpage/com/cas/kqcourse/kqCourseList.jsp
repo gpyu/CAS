@@ -16,6 +16,7 @@
    <t:dgCol title="课程状态" field="courseStatus"   width="120"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
    <t:dgDelOpt title="删除" url="kqCourseController.do?del&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
+   <t:dgDelOpt title="课程签到" url="kqCourseController.do?sign&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
    <t:dgToolBar title="录入" icon="icon-add" url="kqCourseController.do?addorupdate" funname="add"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="kqCourseController.do?addorupdate" funname="update"></t:dgToolBar>
    <t:dgToolBar title="查看" icon="icon-search" url="kqCourseController.do?addorupdate" funname="detail"></t:dgToolBar>

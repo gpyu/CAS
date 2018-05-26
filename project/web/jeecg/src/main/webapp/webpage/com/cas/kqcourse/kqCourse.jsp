@@ -6,6 +6,10 @@
   <title>阿萨德</title>
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
  </head>
+ <script>
+ alert('ok');
+ 
+ </script>
  <body style="overflow-y: hidden" scroll="no">
   <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="kqCourseController.do?save">
 			<input id="id" name="id" type="hidden" value="${kqCoursePage.id }">
@@ -105,7 +109,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="courseStatus" name="courseStatus"   value="${kqCoursePage.courseStatus}" datatype="*" />
+      					<t:dictSelect field="courseStatus" defaultVal="1" dictTable="t_s_base_user" dictCondition="where delete_flag=0" dictField="username" dictText="realname" title="课程状态"></t:dictSelect> 
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>

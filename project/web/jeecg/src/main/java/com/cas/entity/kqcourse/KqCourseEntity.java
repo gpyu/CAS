@@ -61,6 +61,8 @@ public class KqCourseEntity implements java.io.Serializable {
 	private java.lang.String updateBy;
 	/**修改人名字*/
 	private java.lang.String updateName;
+	/**开始签到状态*/
+	private java.lang.String signStatus;
 	
 	/**
 	 *方法: 取得java.lang.String
@@ -73,6 +75,14 @@ public class KqCourseEntity implements java.io.Serializable {
 	@Column(name ="ID",nullable=false,length=32)
 	public java.lang.String getId(){
 		return this.id;
+	}
+	@Column(name ="SIGN_STATUS",nullable=false,length=10)
+	public java.lang.String getSignStatus() {
+		return signStatus;
+	}
+	
+	public void setSignStatus(java.lang.String signStatus) {
+		this.signStatus = signStatus;
 	}
 
 	/**

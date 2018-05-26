@@ -69,7 +69,7 @@ public class KqCourseController extends BaseController {
 
 
 	/**
-	 * 阿萨德列表 页面跳转
+	 * 列表 页面跳转
 	 * 
 	 * @return
 	 */
@@ -107,7 +107,7 @@ public class KqCourseController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		kqCourse = systemService.getEntity(KqCourseEntity.class, kqCourse.getId());
-		message = "阿萨德删除成功";
+		message = "删除成功";
 		kqCourseService.delete(kqCourse);
 		systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		
@@ -117,7 +117,7 @@ public class KqCourseController extends BaseController {
 
 
 	/**
-	 * 添加阿萨德
+	 * 添加
 	 * 
 	 * @param ids
 	 * @return
@@ -128,7 +128,7 @@ public class KqCourseController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		if (StringUtil.isNotEmpty(kqCourse.getId())) {
-			message = "阿萨德更新成功";
+			message = "更新成功";
 			KqCourseEntity t = kqCourseService.get(KqCourseEntity.class, kqCourse.getId());
 			try {
 				MyBeanUtils.copyBeanNotNull2Bean(kqCourse, t);
@@ -136,10 +136,10 @@ public class KqCourseController extends BaseController {
 				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 			} catch (Exception e) {
 				e.printStackTrace();
-				message = "阿萨德更新失败";
+				message = "更新失败";
 			}
 		} else {
-			message = "阿萨德添加成功";
+			message = "添加成功";
 			kqCourseService.save(kqCourse);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}
@@ -148,7 +148,7 @@ public class KqCourseController extends BaseController {
 	}
 
 	/**
-	 * 阿萨德列表页面跳转
+	 * 列表页面跳转
 	 * 
 	 * @return
 	 */
