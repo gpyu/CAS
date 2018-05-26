@@ -6,6 +6,12 @@
   SysThemesEnum sysTheme = SysThemesUtil.getSysTheme(request);
   String lhgdialogTheme = SysThemesUtil.getLhgdialogTheme(sysTheme);
 %>
+<%
+Cookie cookie = new Cookie("JEECGINDEXSTYLE", "default");
+//设置cookie有效期为一个月
+	cookie.setMaxAge(3600*24*30);
+	response.addCookie(cookie);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

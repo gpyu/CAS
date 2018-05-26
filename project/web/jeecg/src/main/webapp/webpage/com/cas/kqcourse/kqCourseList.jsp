@@ -9,7 +9,7 @@
    <t:dgCol title="课程编号" field="courseNum"   width="100"></t:dgCol>
    <t:dgCol title="课程开始时间" field="courseBeginDate" formatter="yyyy-MM-dd"  width="100"></t:dgCol>
    <t:dgCol title="课程结束时间" field="courseEndDate" formatter="yyyy-MM-dd"  width="100"></t:dgCol>
-   <t:dgCol title="任课老师" field="courseTeacherId"   width="100"></t:dgCol>
+   <t:dgCol title="任课老师" field="courseTeacherId" dictionary="t_s_base_user,id,realname"   width="100"></t:dgCol>
    <t:dgCol title="周几上课" field="courseWeek"   width="100"></t:dgCol>
    <t:dgCol title="第几节" field="courseClasses"   width="100"></t:dgCol>
    <t:dgCol title="课程地点" field="coursePlace"   width="100"></t:dgCol>
