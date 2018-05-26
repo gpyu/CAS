@@ -9,12 +9,12 @@ import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
-import { SignupPage } from '../pages/signup/signup';
+// import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
-import { SupportPage } from '../pages/support/support';
+// import { SupportPage } from '../pages/support/support';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -43,20 +43,20 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: '课程信息', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
+    { title: '公告', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: '签到', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
     { title: '定位', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
     { title: '关于', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [
     { title: '个人信息', name: 'AccountPage', component: AccountPage, icon: 'person' },
-    { title: '其他', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    // { title: '其他', name: 'SupportPage', component: SupportPage, icon: 'help' },
     { title: '注销', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
   ];
   loggedOutPages: PageInterface[] = [
     { title: '登录', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
-    { title: '其他', name: 'SupportPage', component: SupportPage, icon: 'help' },
-    { title: '注册', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
+    // { title: '其他', name: 'SupportPage', component: SupportPage, icon: 'help' },
+    // { title: '注册', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
   rootPage: any;
 
@@ -69,25 +69,45 @@ export class ConferenceApp {
     public storage: Storage,
     public splashScreen: SplashScreen
   ) {
+    // navigator.geolocation.getCurrentPosition((position)=>{
+    //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
+    //   let opts = {
+    //     centerAndZoom: {
+    //       lng: position.coords.longitude,
+    //       lat: position.coords.latitude,
+    //       zoom: 15
+    //     },
+    //     enableMapClick:true,
+    //     disableDoubleClickZoom:false, 
+    //   };
+    //   console.log("mapKey"+JSON.stringify(opts));
+    //   this.storage.set('mapKey',opts);
+    // },(error) =>{
+    //   alert('code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
+    // });
 
     
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
-        if (hasSeenTutorial) {
-          this.storage.get('hasLoggedIn').then((hasLoggedIn)=>{
-            if(hasLoggedIn){
-              this.rootPage = TabsPage;
-              // load the conference data
-               confData.load();
-            }else{
-              this.rootPage = LoginPage;
-            }
-          })
-        } else {
-          this.rootPage = TutorialPage;
-        }
-        this.platformReady()
+        this.storage.get("lastLoginDate").then((lastLoginDate)=>{ 
+          var hours =Math.floor((new Date().getTime()-lastLoginDate)/(3600*1000));
+          if (hasSeenTutorial ) {
+            this.storage.get('hasLoggedIn').then((hasLoggedIn)=>{
+              if(hasLoggedIn && hours>1){
+                this.rootPage = TabsPage;
+                // load the conference data
+                 confData.load();
+              }else{
+                this.rootPage = LoginPage;
+              }
+            })
+          } else {
+            this.rootPage = TutorialPage;
+          }
+          this.platformReady()
+        });
+        
       });
 
     

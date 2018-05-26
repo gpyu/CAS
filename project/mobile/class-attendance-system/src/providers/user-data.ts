@@ -43,6 +43,7 @@ export class UserData {
 
   signup(username: string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set('lastLoginDate',new Date());
     this.setUsername(username);
     this.events.publish('user:signup');
   };
@@ -77,6 +78,34 @@ export class UserData {
 
   getTokens(): Promise<string>{
     return this.storage.get(this.TOKENS).then((value)=>{
+      return value;
+    });
+  }
+
+   
+  setLongitude(key: string): void {
+    this.storage.set('longitude', key);
+  };
+  getLongitude(): Promise<string>{
+    return this.storage.get('longitude').then((value)=>{
+      return value;
+    });
+  }
+  setLatitude(key: string): void {
+    this.storage.set('latitude', key);
+  };
+  getLatitude(): Promise<string>{
+    return this.storage.get('latitude').then((value)=>{
+      return value;
+    });
+  }
+
+
+  setMapOption(key: string): void {
+    this.storage.set('mapOption', key);
+  };
+  getMapOption(): Promise<string>{
+    return this.storage.get('mapOption').then((value)=>{
       return value;
     });
   }

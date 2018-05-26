@@ -1,67 +1,45 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MapOptions } from 'angular2-baidu-map';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
 })
 export class MapPage {
-  opts: MapOptions;
-  latitude = 31.245554;
-  longitude = 121.506191;
-  aa = '123123';
+  public opts: MapOptions;
+  public latitude = 26.0471255;
+  public longitude = 119.33022111;
   @ViewChild('mapCanvas') mapElement: ElementRef;
-  constructor() {
+  constructor(public storage: Storage) {
+    
     this.opts = {
       centerAndZoom: {
         lng: this.longitude,
         lat: this.latitude,
         zoom: 15
-      }
-    }
+      },
+      enableMapClick:true,
+      disableDoubleClickZoom:false,
+    };
     
-    // lng: 119.197302,
-    // lat: 26.065064,
   }
   ionViewDidLoad() {
-    var onError = function (error) {
-      alert('code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
-    };
-    var onSuccess = function (position) {
-      let opts = {
-        centerAndZoom: {
-          lng: position.coords.longitude.toFixed(6),
-          lat: position.coords.latitude.toFixed(6),
-          zoom: 15
-        }
-      };
-    }
-    let a = '';
-    let l = '';
-    navigator.geolocation.getCurrentPosition((position)=>{
-      console.log(position.coords.longitude.toFixed(6));
-      a = position.coords.longitude.toFixed(6);
-      l = position.coords.latitude.toFixed(6);
-      console.log(position.coords.latitude.toFixed(6));
-    },onError);
-
+    // navigator.geolocation.getCurrentPosition((position)=>{
+    //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
+    //   let mapOpts : MapOptions = {
+    //     centerAndZoom: {
+    //       lng: position.coords.longitude,
+    //       lat: position.coords.latitude,
+    //       zoom: 15
+    //     },
+    //     enableMapClick:true,
+    //     disableDoubleClickZoom:false, 
+    //   };
+    //   this.opts = mapOpts;
+    //   console.log("ionViewDidLoad"+this.opts);
+    // },(error) =>{
+    //   alert('定位錯誤code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
+    // });
   }
-
 }
-// opts = {
-//   centerAndZoom: {
-//     lng: position.coords.longitude.toFixed(6),
-//     lat: position.coords.latitude.toFixed(6),
-//     zoom: 15
-//   }
-// };
-
-      // alert('Latitude: ' + position.coords.latitude + '\n' +
-      //   'Longitude: ' + position.coords.longitude + '\n' +
-      //   'Altitude: ' + position.coords.altitude + '\n' +
-      //   'Accuracy: ' + position.coords.accuracy + '\n' +
-      //   'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
-      //   'Heading: ' + position.coords.heading + '\n' +
-      //   'Speed: ' + position.coords.speed + '\n' +
-      //   'Timestamp: ' + position.timestamp + '\n');
