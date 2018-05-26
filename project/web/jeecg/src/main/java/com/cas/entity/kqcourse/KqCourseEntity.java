@@ -76,7 +76,7 @@ public class KqCourseEntity implements java.io.Serializable {
 	public java.lang.String getId(){
 		return this.id;
 	}
-	@Column(name ="SIGN_STATUS",nullable=false,length=10)
+	@Column(name ="SIGN_STATUS",nullable=false,length=1)
 	public java.lang.String getSignStatus() {
 		return signStatus;
 	}

@@ -114,6 +114,25 @@ public class KqCourseController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+	
+	/**
+	 * 开启签到
+	 * 
+	 * @return
+	 */
+	@RequestMapping(params = "sign")
+	@ResponseBody
+	public AjaxJson sign(KqCourseEntity kqCourse, HttpServletRequest request) {
+		String message = null;
+		AjaxJson j = new AjaxJson();
+		kqCourse = systemService.getEntity(KqCourseEntity.class, kqCourse.getId());
+		kqCourse.setSignStatus("1");//设置签到状态为开启1,0:未开启
+		message = "开始签到";
+		kqCourseService.saveOrUpdate(kqCourse);
+		systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
+		j.setMsg(message);
+		return j;
+	}
 
 
 	/**
@@ -140,6 +159,7 @@ public class KqCourseController extends BaseController {
 			}
 		} else {
 			message = "添加成功";
+			kqCourse.setSignStatus("0");//设置默认签到状态为0，结束签到
 			kqCourseService.save(kqCourse);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}
