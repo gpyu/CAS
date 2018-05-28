@@ -10,3 +10,7 @@ project/web/jeecg/target/classes/dbconfig.properties
 project/web/jeecg/src/main/resources/dbconfig.properties
 project/web/jeecg/src/main/resources/dbconfig.properties
 project/web/jeecg/target/classes/dbconfig.properties
+project/web/jeecg/target/classes/dbconfig.properties
+project/web/jeecg/src/main/resources/dbconfig.properties
+*.properties
+project/web/jeecg/src/main/webapp/plug-in/tools/curdtools_zh-cn.js
