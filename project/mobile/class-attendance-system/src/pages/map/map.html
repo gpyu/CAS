@@ -3,10 +3,19 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Map</ion-title>
+    <ion-title>地图</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="map-page">
-  <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>
+  <!-- <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>
+    <div #map id="map_container"></div>
+    <div id="btn_location">
+    <button ion-button  class="btn_loaction" (click)="getLocationByBrowser()">浏览器定位</button>
+    <button ion-button  class="btn_loaction" (click)="getLocationByIp()">IP定位</button>
+    <button ion-button  class="btn_loaction" (click)="getLocationByCity()">城市定位</button>
+    <button ion-button  class="btn_loaction" (click)="getLocationByLatLon()">经纬度定位</button>
+    <button ion-button  class="btn_loaction" (click)="getLocation()">GPS点击定位</button>
+  </div> -->
+  <baidu-map [options]="opts" ></baidu-map>
 </ion-content>

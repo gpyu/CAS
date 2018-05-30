@@ -19,6 +19,7 @@ export class DataService {
   // Base Url for API
   //private baseUrl: string = (location.hostname === "localhost") ? 'http://172.17.170.164:8080/jeecg/rest/' : 'http://172.17.170.164:8080/jeecg/rest/';
   private baseUrl: string = (location.hostname === "localhost") ? 'http://47.106.117.191/rest/' : 'http://47.106.117.191/rest/';
+  //private baseUrl: string = (location.hostname === "localhost") ? 'http://127.0.0.1:8080/jeecg/rest/' : 'http://127.0.0.1:8080/jeecg/rest/';
   // Spinner for loader
   private spinner: Loading;
 

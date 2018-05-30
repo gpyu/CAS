@@ -30,6 +30,7 @@ import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import { DataService } from '../providers/data-service/data-service';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
+import { BaiduMapModule } from 'angular2-baidu-map';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
   imports: [
     BrowserModule,
     HttpModule,
+    BaiduMapModule.forRoot({ ak: '0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi' }),
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
