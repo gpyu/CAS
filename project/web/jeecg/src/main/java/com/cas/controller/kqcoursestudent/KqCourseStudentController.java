@@ -1,5 +1,6 @@
 package com.cas.controller.kqcoursestudent;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.core.util.MyBeanUtils;
 
+import com.cas.entity.kqclassstudent.KqClassStudentEntity;
 import com.cas.entity.kqcoursestudent.KqCourseStudentEntity;
 import com.cas.service.kqcoursestudent.KqCourseStudentServiceI;
 
@@ -77,7 +79,43 @@ public class KqCourseStudentController extends BaseController {
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/cas/kqcoursestudent/kqCourseStudentList");
 	}
-
+	/**
+	 * 查看课程学生列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping(params = "studentDatagrid")
+	public void userDatagrid(KqClassStudentEntity user,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		String classId = request.getParameter("id");
+		String sql = "select a.id,a.student_id studentId,a.course_id courseId from kq_course_student a where a.course_id  = '"+classId+"'";
+		List<Map<String, Object>> list = null;
+		//t.get
+		int rows = dataGrid.getRows();
+		int page = (dataGrid.getPage()-1)*rows;
+		//翻页
+		String limitStr = " limit "+page+","+rows;
+		String whereStr = " where 1=1 ";
+		/*String annAnnual = request.getParameter("annAnnual");
+		String bpmStatus = request.getParameter("bpmStatus");
+		
+		if(StringUtil.isNotEmpty(annAnnual)){
+			whereStr = whereStr +" and annAnnual = '"+annAnnual+"'";
+		}
+		if(StringUtil.isNotEmpty(bpmStatus)){
+			whereStr = whereStr +" and bpmStatus = '"+bpmStatus+"'";
+		}
+		sql += whereStr;*/
+		if(StringUtil.isNotEmpty(dataGrid.getSort())){
+			String orderStr = " order by "+dataGrid.getSort()+" "+dataGrid.getOrder();
+			sql += orderStr;
+		}
+		sql += limitStr;
+		list = kqCourseStudentService.findForJdbc(sql);
+		dataGrid.setResults(list);
+		Map<String,Object> map = kqCourseStudentService.findOneForJdbc("select count(*) as sum from (select a.id,a.student_id,a.course_id from kq_course_student a where a.course_id  = '"+classId+"') a");
+		dataGrid.setTotal(Integer.parseInt(map.get("sum").toString()));
+		TagUtil.datagrid(response, dataGrid);
+	}
 	/**
 	 * easyui AJAX请求数据
 	 * 

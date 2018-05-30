@@ -13,22 +13,22 @@
 				<tr>
 					<td align="right">
 						<label class="Validform_label">
-							班级id:
+							班级名称:
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="classId" name="classId" ignore="ignore"  value="${kqClassStudentPage.classId}" />
+					<t:dictSelect field="classId" defaultVal="${kqClassStudentPage.classId}" dictTable="kq_class" dictText="class_name" dictField="id"></t:dictSelect>
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
 				<tr>
 					<td align="right">
 						<label class="Validform_label">
-							学生id:
+							学生名称:
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="studentId" name="studentId" ignore="ignore"  value="${kqClassStudentPage.studentId}" />
+					<t:dictSelect field="studentId" defaultVal="${kqClassStudentPage.studentId}" dictTable="t_s_base_user" dictText="realname" dictField="id"></t:dictSelect>
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
