@@ -65,8 +65,9 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="courseTeacherId" name="courseTeacherId"   value="${kqCoursePage.courseTeacherId}" datatype="*" />
-						<span class="Validform_checktip"></span>
+						<t:dictSelect field="courseTeacherId" defaultVal="${kqCoursePage.courseTeacherId}" dictTable="t_s_base_user"  dictField="username" dictText="realname" title="课程状态"></t:dictSelect> 
+<%-- 						<input class="inputxt" id="courseTeacherId" name="courseTeacherId"   value="${kqCoursePage.courseTeacherId}" datatype="*" />
+ --%>						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
 				<tr>
@@ -76,7 +77,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<t:dictSelect field="courseWeek" defaultVal="1"  typeGroupCode="courWeek" title="周几上课"></t:dictSelect> 
+						<t:dictSelect field="courseWeek" defaultVal="${kqCoursePage.courseWeek}"  typeGroupCode="courWeek" title="周几上课"></t:dictSelect> 
 						
 						<span class="Validform_checktip"></span>
 					</td>
@@ -88,7 +89,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<t:dictSelect field="courseClasses" defaultVal="1"  typeGroupCode="courClass" title="第几节"></t:dictSelect> 
+						<t:dictSelect field="courseClasses" defaultVal="${kqCoursePage.courseClasses}"  typeGroupCode="courClass" title="第几节"></t:dictSelect> 
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
@@ -110,7 +111,7 @@
 						</label>
 					</td>
 					<td class="value">
-      					<t:dictSelect field="courseStatus" defaultVal="1"  typeGroupCode="courStatus" title="课程状态"></t:dictSelect> 
+      					<t:dictSelect field="courseStatus" defaultVal="${kqCoursePage.courseStatus}"  typeGroupCode="courStatus" title="课程状态"></t:dictSelect> 
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
