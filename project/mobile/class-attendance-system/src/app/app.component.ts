@@ -68,21 +68,37 @@ export class ConferenceApp {
     public confData: ConferenceData,
     public storage: Storage,
     public splashScreen: SplashScreen
-  ) {    
+  ) {
+    // navigator.geolocation.getCurrentPosition((position)=>{
+    //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
+    //   let opts = {
+    //     centerAndZoom: {
+    //       lng: position.coords.longitude,
+    //       lat: position.coords.latitude,
+    //       zoom: 15
+    //     },
+    //     enableMapClick:true,
+    //     disableDoubleClickZoom:false, 
+    //   };
+    //   console.log("mapKey"+JSON.stringify(opts));
+    //   this.storage.set('mapKey',opts);
+    // },(error) =>{
+    //   alert('code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
+    // });
+
+    
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         this.storage.get("lastLoginDate").then((lastLoginDate)=>{ 
-          var hours =Math.floor((new Date().getTime() - Date.parse(lastLoginDate))/(3600*1000));
+          var hours =Math.floor((new Date().getTime()-lastLoginDate)/(3600*1000));
           if (hasSeenTutorial ) {
             this.storage.get('hasLoggedIn').then((hasLoggedIn)=>{
               if(hasLoggedIn && hours>1){
                 this.rootPage = TabsPage;
-
                 // load the conference data
                  confData.load();
               }else{
-                this.userData.logout();
                 this.rootPage = LoginPage;
               }
             })
