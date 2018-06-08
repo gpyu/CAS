@@ -36,6 +36,7 @@ export class UserData {
 
   login(username: string, tokens:string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set('lastLoginDate', Date());
     this.setUsername(username);
     this.storage.set(this.TOKENS, tokens);
     this.events.publish('user:login');

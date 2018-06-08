@@ -1,0 +1,4 @@
+
+ionic plugin add https://github.com/mrwutong/cordova-qdc-baidu-location --variable API_KEY="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi"
+
+cordova plugin add https://github.com/liangzhenghui/cordova-qdc-baidu-location --variable API_KEY="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi" --save

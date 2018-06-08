@@ -6,61 +6,49 @@
     <ion-title>签到</ion-title>
   </ion-navbar>
 </ion-header>
-
+<script src="/Content/Scripts/jquery.flexslider.js"></script>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=6yAoynmTPNlTBa8z1X4LfwGE"></script>  
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <ion-content class="outer-content speaker-list">
-  <!-- <ion-list [virtualScroll]="speakers">
-    <ion-grid fixed>
-      <ion-row align-items-stretch>
+  <ion-card-content class="outer-content">
+    <button ion-item   (click)="getLocation()">
+      <h3>location</h3>
+    </button>
+    <script>
+    var geolocation = new BMap.Geolocation();  
+    geolocation.getCurrentPosition(function (r) {  
+            if (this.getStatus() == BMAP_STATUS_SUCCESS) {  
+                var mk = new BMap.Marker(r.point);  
+                currentLat = r.point.lat;  
+                currentLon = r.point.lng;  
+                alert(currentLon);
+                
+                SetCookie("curLat", currentLat, 1); //设置cookie  
+                SetCookie("curLng", currentLon, 1); //设置cookie             
+                    var pt = new BMap.Point(currentLon, currentLat);  
+                    var geoc = new BMap.Geocoder();  
+                    geoc.getLocation(pt, function (rs) {
+                        var addComp = rs.addressComponents;  
+                        SetCookie("curLat", currentLat, 1); //设置cookie  
+                        SetCookie("curLng", currentLon, 1); //设置cookie  
+                       
+                        var city = addComp.city;  
+                        var addComp = rs.addressComponents;  
+                        var texts = addComp.district + "-" + addComp.street + "-" + addComp.streetNumber;  
+                        //获取地理位置成功，跳转  
+                      });
+                    }
+        
+        });
+    </script>
+    <!-- <ion-list>
+      <button ion-item *ngFor="let session of sessions" (click)="goToSessionDetail(session)">
+        <h3>{{session.name}}</h3>
+      </button>
 
-        <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let speaker" approxItemHeight="457px">
-
-          <ion-card class="speaker-card">
-            <ion-card-header>
-              <button ion-item detail-none (click)="goToSpeakerDetail(speaker)">
-                <ion-avatar item-start>
-                  <img [src]="speaker.profilePic" alt="Speaker profile pic">
-                </ion-avatar>
-                {{speaker.name}}
-              </button>
-            </ion-card-header>
-
-            <ion-card-content class="outer-content">
-              <ion-list>
-                <button ion-item *ngFor="let session of speaker.sessions" (click)="goToSessionDetail(session)">
-                  <h3>{{session.name}}</h3>
-                </button>
-
-                <button ion-item (click)="goToSpeakerDetail(speaker)">
-                  <h3>About {{speaker.name}}</h3>
-                </button>
-              </ion-list>
-            </ion-card-content>
-
-            <ion-row no-padding>
-              <ion-col col-12 col-lg-auto text-center text-lg-left>
-                <button ion-button clear small color="primary" icon-start (click)="goToSpeakerTwitter(speaker)">
-                  <ion-icon name="logo-twitter"></ion-icon>
-                  Tweet
-                </button>
-              </ion-col>
-              <ion-col col-12 col-lg-auto text-center>
-                <button ion-button clear small color="primary" icon-start (click)="openSpeakerShare(speaker)">
-                  <ion-icon name='share-alt'></ion-icon>
-                  Share
-                </button>
-              </ion-col>
-              <ion-col col-12 col-lg-auto text-center text-lg-right>
-                <button ion-button clear small color="primary" icon-start (click)="openContact(speaker)">
-                  <ion-icon name='chatboxes'></ion-icon>
-                  Contact
-                </button>
-              </ion-col>
-            </ion-row>
-
-          </ion-card>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-list> -->
+      <button ion-item (click)="goToSpeakerDetail(speaker)">
+        <h3>About {{speaker.name}}</h3>
+      </button>
+    </ion-list> -->
+  </ion-card-content>
 </ion-content>

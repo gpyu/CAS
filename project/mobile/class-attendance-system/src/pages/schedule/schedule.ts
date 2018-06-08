@@ -49,7 +49,11 @@ export class SchedulePage {
   updateSchedule() {
     this.dataService.get('/classNotice').subscribe((result:any)=>{
       console.log(result)
-      this.shownSessions = result;
+      if(result != null){
+        this.shownSessions = result;
+      }else{
+        alert(123);
+      }
     })
    /* this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
       this.shownSessions = data.shownSessions;
