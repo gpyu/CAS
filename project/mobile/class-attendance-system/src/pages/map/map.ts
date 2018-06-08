@@ -27,19 +27,19 @@ export class MapPage {
     
   }
   ionViewDidLoad() {
-    // this.platform.ready().then(
-    //   () => {
-    //     console.log("MyApp::constructor platform.ready");
-    //     alert("MyApp::constructor platform.ready");
-    //     cordova.plugins.baidumap_location.getCurrentPosition(function (result) {
-    //       alert(JSON.stringify(result, null, 4))
-    //       console.log("================")
-    //       console.log(JSON.stringify(result, null, 4));
-    //     }, function (error) {
-    //       console.log(error+"================")
-    //     });
-    //   }
-    // );
+    this.platform.ready().then(
+      () => {
+        console.log("MyApp::constructor platform.ready");
+        alert("MyApp::constructor platform.ready");
+        cordova.plugins.baidumap_location.getCurrentPosition(function (result) {
+          alert(JSON.stringify(result, null, 4))
+          console.log("================")
+          console.log(JSON.stringify(result, null, 4));
+        }, function (error) {
+          console.log(error+"================")
+        });
+      }
+    );
     //navigator.geolocation.getCurrentPosition((position)=>{
       // this.opts.centerAndZoom.lng = position.coords.longitude;
       // this.opts.centerAndZoom.lat = position.coords.latitude

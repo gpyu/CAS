@@ -6,4 +6,3 @@ project/web/jeecg/target
 project/web/jeecg/target/classes/jeecg/jeecg_config.properties
 project/web/jeecg/target/classes/spring-mvc-hibernate.xml
 project/web/jeecg/target/classes/spring-mvc.xml
-project/web/jeecg/target/classes/dbconfig.properties
