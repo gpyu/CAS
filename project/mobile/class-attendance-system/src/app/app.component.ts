@@ -45,7 +45,7 @@ export class ConferenceApp {
   appPages: PageInterface[] = [
     { title: '公告', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: '签到', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
-    { title: '地图', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
+    { title: '定位', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
     { title: '关于', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
   loggedInPages: PageInterface[] = [

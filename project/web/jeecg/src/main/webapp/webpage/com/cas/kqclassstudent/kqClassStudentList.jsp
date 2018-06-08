@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="kqClassStudentList" title="班级学生表" actionUrl="kqClassStudentController.do?studentDatagrid&classid=${classid}" idField="id" fit="true">
+  <t:datagrid name="kqClassStudentList" title="班级学生表" actionUrl="kqClassStudentController.do?datagrid" idField="id" fit="true">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
    <t:dgCol title="班级id" field="classId"   width="120"></t:dgCol>
    <t:dgCol title="学生id" field="studentId"   width="120"></t:dgCol>

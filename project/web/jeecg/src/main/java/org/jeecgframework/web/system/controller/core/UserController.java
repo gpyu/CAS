@@ -1364,6 +1364,7 @@ public class UserController extends BaseController {
 						j.setMsg("用户名为必填字段，导入失败");
 						return j;
 					}
+
 					tsUser.setStatus(new Short("1"));
 					tsUser.setDevFlag("0");
 					tsUser.setDeleteFlag(new Short("0"));

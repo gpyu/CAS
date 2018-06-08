@@ -90,7 +90,6 @@ public class KqClassController extends BaseController {
 	@RequestMapping(params = "datagrid")
 	public void datagrid(KqClassEntity kqClass,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(KqClassEntity.class, dataGrid);
-		String id = request.getParameter("id");
 		//查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, kqClass, request.getParameterMap());
 		this.kqClassService.getDataGridReturn(cq, true);
@@ -115,7 +114,7 @@ public class KqClassController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
 
 	/**
 	 * 添加班级管理

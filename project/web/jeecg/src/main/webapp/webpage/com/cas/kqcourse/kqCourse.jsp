@@ -65,9 +65,15 @@
 						</label>
 					</td>
 					<td class="value">
+   
+						<t:dictSelect field="courseTeacherId" defaultVal="${kqCoursePage.courseTeacherId}" dictTable="t_s_base_user"  dictField="username" dictText="realname" title="课程状态"></t:dictSelect> 
+<%-- 						<input class="inputxt" id="courseTeacherId" name="courseTeacherId"   value="${kqCoursePage.courseTeacherId}" datatype="*" />
+ --%>						<span class="Validform_checktip"></span>
+
 						<t:dictSelect field="courseTeacherId" defaultVal="${kqCoursePage.courseTeacherId}"  dictTable="t_s_base_user" dictField="id" dictText="realname"  ></t:dictSelect> 
 						<%-- <input class="inputxt" id="courseTeacherId" name="courseTeacherId"   value="${kqCoursePage.courseTeacherId}" datatype="*" /> --%>
 						<span class="Validform_checktip"></span>
+
 					</td>
 				</tr>
 				<tr>
