@@ -80,6 +80,22 @@ export class SpeakerListPage {
 
   // }
   getLocation(){
+
+
+    window.baiduLocation.startLocation(  
+      function (success) {  
+              alert(success.latitude + "," + success.longitude+","+success.address);  
+          }, function (error) {  
+              /*
+                  error={
+                          code:   //code=-1,为本地错误,code>0为百度定位的错误码
+                          msg:  //错误描述
+                  }
+              */
+          },{//这个参数也可以不传  
+              CoorType:'bd09ll', //设置坐标系默认'bd09ll'  
+              IsNeedAddress:false //是否需要返回坐标的地址信息，默认是false  
+          });  
     // baidu_location.getCurrentPosition(function(data){
     //       console.log("success");
     //       alert(JSON.stringify(data));

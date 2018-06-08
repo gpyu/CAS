@@ -910,7 +910,8 @@ function addOneTab(subtitle, url, icon) {
 	var indexStyle = getCookie("JEECGINDEXSTYLE");
 	if(indexStyle=='sliding'||indexStyle=='bootstrap'){
 		//shortcut和bootstrap风格的tab跳转改为直接跳转
-		window.location.href=url;
+		//window.location.href=url;
+		window.top.addTabs({id:id,title:subtitle,close: true,url: url});
 	}else if(indexStyle=='acele'||indexStyle=='ace'){
 		var id = "";
 		//if(url.indexOf("=")!=-1){
