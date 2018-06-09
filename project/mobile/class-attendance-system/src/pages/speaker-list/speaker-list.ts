@@ -80,6 +80,9 @@ export class SpeakerListPage {
 
   // }
   getLocation(){
+    // let lat = this.latitude;
+    // let lon = this.longitude;
+
 
   window.baiduLocation.startLocation(  
     function (success) { 

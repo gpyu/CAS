@@ -303,6 +303,8 @@ var SpeakerListPage = (function () {
     //   );
     // }
     SpeakerListPage.prototype.getLocation = function () {
+        // let lat = this.latitude;
+        // let lon = this.longitude;
         window.baiduLocation.startLocation(function (success) {
             alert(JSON.stringify(success));
             alert(success.latitude + "," + success.longitude + "," + success.address);
@@ -398,58 +400,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-// import { MapOptions } from 'angular2-baidu-map';
 
 // import {Platform} from 'ionic-angular';
 // declare var cordova :any;
 var MapPage = (function () {
     function MapPage(
-        //private platform: Platform,
+        // private platform: Platform,
         storage) {
-        // this.opts = {
-        //   centerAndZoom: {
-        //     lng: this.longitude,
-        //     lat: this.latitude,
-        //     zoom: 15
-        //   },
-        //   enableMapClick:true,
-        //   disableDoubleClickZoom:false,
-        // };
         this.storage = storage;
+        this.latitude = 26.067811;
+        this.longitude = 119.207798;
+        this.opts = {
+            centerAndZoom: {
+                lng: this.longitude,
+                lat: this.latitude,
+                zoom: 15
+            },
+            enableMapClick: true,
+            disableDoubleClickZoom: false,
+        };
+        // window.baiduLocation.startLocation(  
+        //   function (success) { 
+        //     this.opts.centerAndZoom.lat = success.latitude;
+        //     this.opts.centerAndZoom.lng = success.longitude;
+        //           console.log(success.latitude + "," + success.longitude+","+success.address);  
+        //       }, function (error) {  
+        //           /*
+        //               error={
+        //                       code:   //code=-1,为本地错误,code>0为百度定位的错误码
+        //                       msg:  //错误描述
+        //               }
+        //           */
+        //       },{//这个参数也可以不传  
+        //           CoorType:'bd09ll', //设置坐标系默认'bd09ll'  
+        //           IsNeedAddress:false //是否需要返回坐标的地址信息，默认是false  
+        //       });
     }
     MapPage.prototype.ionViewDidLoad = function () {
-        //navigator.geolocation.getCurrentPosition((position)=>{
-        // this.opts.centerAndZoom.lng = position.coords.longitude;
-        // this.opts.centerAndZoom.lat = position.coords.latitude
-        //console.log(position.coords.longitude);
-        // console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
-        // let mapOpts : MapOptions = {
-        //   centerAndZoom: {
-        //     lng: position.coords.longitude,
-        //     lat: position.coords.latitude,
-        //     zoom: 15
-        //   },
-        //   enableMapClick:true,
-        //   disableDoubleClickZoom:false, 
-        // };
-        // this.opts = mapOpts;
-        // console.log("ionViewDidLoad"+this.opts);
-        //},(error) =>{
-        // alert('定位錯誤code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
-        //});
+        // navigator.geolocation.getCurrentPosition((position)=>{
+        //   this.opts.centerAndZoom.lng = position.coords.longitude;
+        //   this.opts.centerAndZoom.lat = position.coords.latitude
+        //   console.log(position.coords.longitude);
+        //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
+        //   let mapOpts : MapOptions = {
+        //     centerAndZoom: {
+        //       lng: position.coords.longitude,
+        //       lat: position.coords.latitude,
+        //       zoom: 15
+        //     },
+        //     enableMapClick:true,
+        //     disableDoubleClickZoom:false, 
+        //   };
+        //   this.opts = mapOpts;
+        //   console.log("ionViewDidLoad"+this.opts);
+        // },(error) =>{
+        //  alert('定位錯誤code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
+        // });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('mapCanvas'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
     ], MapPage.prototype, "mapElement", void 0);
     MapPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-map',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>地图</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="map-page">\n\n  <!-- <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>\n\n    <div #map id="map_container"></div>\n\n    <div id="btn_location">\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByBrowser()">浏览器定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByIp()">IP定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByCity()">城市定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByLatLon()">经纬度定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocation()">GPS点击定位</button>\n\n  </div> -->\n\n  <baidu-map [options]="opts" ></baidu-map>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
     ], MapPage);
     return MapPage;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=map.js.map
@@ -1281,10 +1299,10 @@ var ConferenceApp = (function () {
         this.storage.get('hasSeenTutorial')
             .then(function (hasSeenTutorial) {
             _this.storage.get("lastLoginDate").then(function (lastLoginDate) {
-                var hours = Math.floor((new Date().getTime() - lastLoginDate) / (3600 * 1000));
+                var hours = Math.floor((new Date().getTime() - Date.parse(lastLoginDate)) / (3600 * 1000));
                 if (hasSeenTutorial) {
                     _this.storage.get('hasLoggedIn').then(function (hasLoggedIn) {
-                        if (hasLoggedIn && hours > 1) {
+                        if (hasLoggedIn && hours <= 1) {
                             _this.rootPage = __WEBPACK_IMPORTED_MODULE_8__pages_tabs_page_tabs_page__["a" /* TabsPage */];
                             // load the conference data
                             confData.load();

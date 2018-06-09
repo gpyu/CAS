@@ -90,11 +90,11 @@
     <engine name="android" spec="~6.1.2" />
     <plugin name="cordova-plugin-geolocation" spec="~2.4.3" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
+    <plugin name="cordova-baidu-location" spec="https://github.com/huangliop/BaiduLocation4Cordova.git">
+        <variable name="API_KEY" value="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi" />
+    </plugin>
     <plugin name="cordova-plugin-baidumaplocation" spec="~4.0.1">
         <variable name="ANDROID_KEY" value="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi" />
         <variable name="IOS_KEY" value="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi" />
-    </plugin>
-    <plugin name="cordova-baidu-location" spec="https://github.com/huangliop/BaiduLocation4Cordova.git">
-        <variable name="API_KEY" value="0SjHi0DxOKBbBxGGnxcQbOyVE0iB7TFi" />
     </plugin>
 </widget>
