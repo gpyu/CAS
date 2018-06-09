@@ -7,7 +7,7 @@
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
  </head>
  <body style="overflow-y: hidden" scroll="no">
-  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="kqCourseTimeInfoController.do?save">
+  <t:formvalid formid="formobj" dialog="true" callback="kqCourseTimeInfoListsearch" usePlugin="password" layout="table" action="kqCourseTimeInfoController.do?save">
 			<input id="id" name="id" type="hidden" value="${kqCourseTimeInfoPage.id }">
 			<table style="width: 600px;" cellpadding="0" cellspacing="1" class="formtable">
 				<tr>
@@ -43,17 +43,7 @@
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
-				<tr>
-					<td align="right">
-						<label class="Validform_label">
-							课程id:
-						</label>
-					</td>
-					<td class="value">
-						<input class="inputxt" id="courseId" name="courseId" ignore="ignore"  value="${kqCourseTimeInfoPage.courseId}" />
-						<span class="Validform_checktip"></span>
-					</td>
-				</tr>
+				<input class="inputxt" hidden="true" id="courseId" name="courseId" ignore="ignore"  value="${kqCourseTimeInfoPage.courseId}" />
 			</table>
 		</t:formvalid>
  </body>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,9 +90,10 @@ public class KqCourseTimeInfoController extends BaseController {
 
 	@RequestMapping(params = "datagrid")
 	public void datagrid(KqCourseTimeInfoEntity kqCourseTimeInfo,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		String courseId = request.getParameter("courseId");
 		CriteriaQuery cq = new CriteriaQuery(KqCourseTimeInfoEntity.class, dataGrid);
+		cq.add(Restrictions.eq("courseId", courseId));
 		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, kqCourseTimeInfo, request.getParameterMap());
 		this.kqCourseTimeInfoService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
@@ -156,8 +158,8 @@ public class KqCourseTimeInfoController extends BaseController {
 	public ModelAndView addorupdate(KqCourseTimeInfoEntity kqCourseTimeInfo, HttpServletRequest req) {
 		if (StringUtil.isNotEmpty(kqCourseTimeInfo.getId())) {
 			kqCourseTimeInfo = kqCourseTimeInfoService.getEntity(KqCourseTimeInfoEntity.class, kqCourseTimeInfo.getId());
-			req.setAttribute("kqCourseTimeInfoPage", kqCourseTimeInfo);
 		}
+		req.setAttribute("kqCourseTimeInfoPage", kqCourseTimeInfo);
 		return new ModelAndView("com/cas/kqcoursetimeinfo/kqCourseTimeInfo");
 	}
 	
