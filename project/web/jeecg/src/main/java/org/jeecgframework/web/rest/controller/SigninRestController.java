@@ -87,18 +87,32 @@ public class SigninRestController {
 
 	@ApiOperation(value="根据ID获取课程签到内容",notes="根据ID获取课程签到内容",httpMethod="GET",produces="application/json")
 
-	public ResponseEntity<?> get(@ApiParam(required=true,name="username",value="用戶名字") @PathVariable("username") String username) {
+	public ResponseEntity<?> get(@ApiParam(required=true,name="username",value="用戶名字") @PathVariable("studentId") String studentId) {
 		JSONObject sessions = new JSONObject();
 		JSONObject speakers = new JSONObject();
 		
-		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
-				+ " left join kq_course b on a.course_id = b.ID"
-				+ " left join t_s_base_user c on c.ID = a.student_id"
-				+ " left join kq_attendance d on d.course_id = a.course_id and d.student_id = a.student_id"
-				+ " where b.sign_status = '1' and c.username = '"+username+"';";
+		String sql="select c.* from kq_course_student t "
+					+"left join kq_course c on t.course_id=c.ID "
+					+"left join t_s_base_user u on u.ID=t.student_id"
+					+"where c.course_status=1 and  t.student_id='"+studentId+"';";
+		
+		
+//		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
+//				+ " left join kq_course b on a.course_id = b.ID"
+//				+ " left join t_s_base_user c on c.ID = a.student_id"
+//				+ " left join kq_attendance d on d.course_id = a.course_id and d.student_id = a.student_id"
+//				+ " where b.sign_status = '1' and c.username = '"+username+"';";
 		
 		List<Map<String,Object>> kqClassesList =kqClassNoticeService.findForJdbc(sql);
-		speakers.put("sessions", kqClassesList);
+		if (kqClassesList.size()>0){	//返回课程列表
+			speakers.put("data", kqClassesList);
+			speakers.put("isSign", true);
+			
+		}else{
+			speakers.put("isSign", false);
+		}
+			
+		
 		return new ResponseEntity(speakers, HttpStatus.OK);
 	}
 
