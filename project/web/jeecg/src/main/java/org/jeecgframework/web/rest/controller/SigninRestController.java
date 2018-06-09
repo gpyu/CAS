@@ -82,12 +82,12 @@ public class SigninRestController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{studentId}", method = RequestMethod.GET)
 	@ResponseBody
 
 	@ApiOperation(value="根据ID获取课程签到内容",notes="根据ID获取课程签到内容",httpMethod="GET",produces="application/json")
 
-	public ResponseEntity<?> get(@ApiParam(required=true,name="username",value="用戶名字") @PathVariable("studentId") String studentId) {
+	public ResponseEntity<?> get(@ApiParam(required=true,name="studentId",value="学生ID") @PathVariable("studentId") String studentId) {
 		JSONObject sessions = new JSONObject();
 		JSONObject speakers = new JSONObject();
 		
