@@ -9,6 +9,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.jeecgframework.core.beanvalidator.BeanValidators;
+import org.jeecgframework.web.system.service.SystemService;
+import org.jeecgframework.web.system.util.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cas.entity.kqattendance.KqAttendanceEntity;
 import com.cas.entity.kqclassnotice.KqClassNoticeEntity;
 import com.cas.service.kqclassnotice.KqClassNoticeServiceI;
 
@@ -84,7 +87,6 @@ public class SigninRestController {
 	 */
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
 	@ResponseBody
-
 	@ApiOperation(value="根据ID获取课程签到内容",notes="根据ID获取课程签到内容",httpMethod="GET",produces="application/json")
 
 	public ResponseEntity<?> get(@ApiParam(required=true,name="username",value="用戶名字") @PathVariable("username") String username) {
@@ -101,7 +103,41 @@ public class SigninRestController {
 		speakers.put("sessions", kqClassesList);
 		return new ResponseEntity(speakers, HttpStatus.OK);
 	}
-
+	/**
+	 * 访问地址：http://localhost:8080/jeecg/rest/user/{id}
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="根据地理位置签到",notes="根据地理位置签到",httpMethod="GET",produces="application/json")
+	public boolean signin(
+			@ApiParam(name = "studentid", value = "学生id", required = true) String studentid,
+			@ApiParam(name = "courseid", value = "课程id", required = true) String courseid,
+			@ApiParam(name = "slongitude", value = "学生经度", required = true) Double slongitude,
+			@ApiParam(name = "slatitude", value = "学生纬度", required = true) Double slatitude){
+		String sql1="select a.longitude,a.latitude from kq_classroom a"
+				+"left join kq_course_assign b on a.id=b.kq_place"
+				+"where b.kq_course_info_id='"+courseid+"';";
+		List<Map<String,Object>> roominfo =kqClassNoticeService.findForJdbc(sql1);
+		double rlongitude=(double)roominfo.get(0).get("longitude");
+		double rlatitude=(double)roominfo.get(0).get("latitude");
+		MapUtils mapUtils=new MapUtils();
+		double distance=mapUtils.getDistance(slongitude,slatitude,rlongitude,rlatitude);
+		String sql2="select max_location_distance from kq_base_parameter";
+		List<Map<String,Object>> baseinfo =kqClassNoticeService.findForJdbc(sql2);
+		double sdistance=(double)baseinfo.get(0).get("max_location_distance");
+		if (distance<=sdistance) {
+			KqAttendanceEntity kqAttendanceEntity=new KqAttendanceEntity();
+			kqAttendanceEntity.setCourseId(courseid);
+			kqAttendanceEntity.setStudentId(studentid);
+			kqAttendanceEntity.setType("1");
+			systemService.save(kqAttendanceEntity);
+			return true;
+		}else {
+			return false;
+		}
+	}
 	/*@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 
