@@ -130,12 +130,16 @@ public class SigninRestController {
 	@ApiOperation(value="根据地理位置签到",notes="根据地理位置签到",httpMethod="GET",produces="application/json")
 	public boolean signin(
 			@ApiParam(name = "studentid", value = "学生id", required = true) @PathVariable("studentid")String studentid,
-			@ApiParam(name = "courseid", value = "课程id", required = true) @PathVariable("courseid")String courseid,
+			@ApiParam(name = "courseid", value = "课程id", required = true) @PathVariable("courseid")String courseid1,
 			@ApiParam(name = "slongitude", value = "学生经度", required = true)@PathVariable("slongitude") String slongitude,
 			@ApiParam(name = "slatitude", value = "学生纬度", required = true)@PathVariable("slatitude") String slatitude){
+		
+		String sql0="select id from kq_course_assign where kq_course_info_id='"+courseid1+"';";
+		List<Map<String,Object>> cidinfo =kqClassNoticeService.findForJdbc(sql0);
+		String courseid=cidinfo.get(0).get("id").toString();
 		String sql1="select a.longitude,a.lantitude from kq_classroom a "
 				+"RIGHT join kq_course_assign b on a.id=b.kq_place "
-				+"where b.kq_course_info_id='"+courseid+"';";
+				+"where b.kq_course_info_id='"+courseid1+"';";
 		List<Map<String,Object>> roominfo =kqClassNoticeService.findForJdbc(sql1);
 		double rlongitude=Double.parseDouble(roominfo.get(0).get("longitude").toString());
 		double rlatitude=Double.parseDouble(roominfo.get(0).get("lantitude").toString());
@@ -215,7 +219,11 @@ public class SigninRestController {
 	    // 截取开始时间时分秒  
 	    int strDateBeginH = Integer.parseInt(strDateBegin.substring(0, 2));  
 	    int strDateBeginM = Integer.parseInt(strDateBegin.substring(3, 5));  
-	    int strDateBeginS = Integer.parseInt(strDateBegin.substring(6, 8)); 
+	    int strDateBeginS = Integer.parseInt(strDateBegin.substring(6, 8));
+	    if (B>=60) {
+			strDateBeginH-=B/60;
+			B=B%60;
+		}
 	    if (strDateBeginM-B<0) {
 			strDateBeginH-=1;
 			strDateBeginM=strDateBeginM+60-B;
@@ -227,8 +235,8 @@ public class SigninRestController {
 	    int strDateEndM = Integer.parseInt(strDateEnd.substring(3, 5));  
 	    int strDateEndS = Integer.parseInt(strDateEnd.substring(6, 8));
 	    if (strDateEndM+E>=60) {
-			strDateEndH+=1;
-			strDateEndM=strDateEndM+E-60;
+			strDateEndH+=(strDateEndM+E)/60;
+			strDateEndM=(strDateEndM+E)%60;
 		}else {
 			strDateEndM=strDateEndM+E;
 		}
