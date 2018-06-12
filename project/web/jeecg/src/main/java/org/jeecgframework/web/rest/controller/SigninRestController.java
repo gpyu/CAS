@@ -1,6 +1,9 @@
 package org.jeecgframework.web.rest.controller;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -46,7 +49,7 @@ import io.swagger.annotations.ApiParam;
  * @author liuht
  */
 
-@Api(value="classSigninInfoRest",description="班级公告信息管理",tags="SigninRestController")
+@Api(value="classSigninInfoRest",description="签到信息管理",tags="SigninRestController")
 
 @Controller
 @RequestMapping(value = "/classSigninInfo")
@@ -122,36 +125,141 @@ public class SigninRestController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	@RequestMapping(value = "/signin/{studentid}&&{slatitude}&&{slongitude}&&{courseid}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据地理位置签到",notes="根据地理位置签到",httpMethod="GET",produces="application/json")
 	public boolean signin(
-			@ApiParam(name = "studentid", value = "学生id", required = true) String studentid,
-			@ApiParam(name = "courseid", value = "课程id", required = true) String courseid,
-			@ApiParam(name = "slongitude", value = "学生经度", required = true) Double slongitude,
-			@ApiParam(name = "slatitude", value = "学生纬度", required = true) Double slatitude){
-		String sql1="select a.longitude,a.latitude from kq_classroom a"
-				+"left join kq_course_assign b on a.id=b.kq_place"
+			@ApiParam(name = "studentid", value = "学生id", required = true) @PathVariable("studentid")String studentid,
+			@ApiParam(name = "courseid", value = "课程id", required = true) @PathVariable("courseid")String courseid,
+			@ApiParam(name = "slongitude", value = "学生经度", required = true)@PathVariable("slongitude") String slongitude,
+			@ApiParam(name = "slatitude", value = "学生纬度", required = true)@PathVariable("slatitude") String slatitude){
+		String sql1="select a.longitude,a.lantitude from kq_classroom a "
+				+"RIGHT join kq_course_assign b on a.id=b.kq_place "
 				+"where b.kq_course_info_id='"+courseid+"';";
 		List<Map<String,Object>> roominfo =kqClassNoticeService.findForJdbc(sql1);
-		double rlongitude=(double)roominfo.get(0).get("longitude");
-		double rlatitude=(double)roominfo.get(0).get("latitude");
+		double rlongitude=Double.parseDouble(roominfo.get(0).get("longitude").toString());
+		double rlatitude=Double.parseDouble(roominfo.get(0).get("lantitude").toString());
 		MapUtils mapUtils=new MapUtils();
-		double distance=mapUtils.getDistance(slongitude,slatitude,rlongitude,rlatitude);
-		String sql2="select max_location_distance from kq_base_parameter";
+		double distance=mapUtils.getDistance(Double.valueOf(slongitude),Double.valueOf(slatitude),rlongitude,rlatitude);
+		String sql2="select max_location_distance from kq_base_parameter;";
 		List<Map<String,Object>> baseinfo =kqClassNoticeService.findForJdbc(sql2);
-		double sdistance=(double)baseinfo.get(0).get("max_location_distance");
+		double sdistance=Double.parseDouble(baseinfo.get(0).get("max_location_distance").toString());
+		Date date=new Date();
+		//判断当前日期是周几
+		Calendar calendar = Calendar.getInstance();      
+
+		    if(date != null){        
+
+		         calendar.setTime(date);      
+
+		    }        
+
+		    int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;      
+
+		    if (w < 0){        
+		        w = 0;      
+		    }
+		String sql3="select bein_time,end_time from kq_course_time_info where course_id='"+courseid+"'and week='"+w+"';";
+		List<Map<String,Object>> courseinfo =kqClassNoticeService.findForJdbc(sql3);
+		String begin=courseinfo.get(0).get("bein_time").toString();
+		String end=courseinfo.get(0).get("end_time").toString();
+		String sql4="select begin_time from kq_timetable where classnumber='"+begin+"';";
+		String sql5="select end_time from kq_timetable where classnumber='"+end+"';";
+		List<Map<String,Object>> be =kqClassNoticeService.findForJdbc(sql4);
+		List<Map<String,Object>> en =kqClassNoticeService.findForJdbc(sql5);
+		String begin_time=be.get(0).get("begin_time").toString();
+		String end_time=en.get(0).get("end_time").toString();
+		String sql6="select * from kq_base_parameter;";
+		List<Map<String,Object>> base =kqClassNoticeService.findForJdbc(sql6);
+		boolean flag=isInDate(date, begin_time, begin_time, base.get(0).get("sigin_begin_time").toString(),  base.get(0).get("sigin_end_time").toString());
 		if (distance<=sdistance) {
 			KqAttendanceEntity kqAttendanceEntity=new KqAttendanceEntity();
 			kqAttendanceEntity.setCourseId(courseid);
 			kqAttendanceEntity.setStudentId(studentid);
-			kqAttendanceEntity.setType("1");
-			systemService.save(kqAttendanceEntity);
+			
+			//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");			
+			kqAttendanceEntity.setDate(new Date());
+			if (flag) {
+			kqAttendanceEntity.setType("1");//上课签到	
+			}else {
+			kqAttendanceEntity.setType("2");//下课签到
+			}
+			kqClassNoticeService.save(kqAttendanceEntity);
 			return true;
 		}else {
 			return false;
 		}
 	}
+	/** 
+	 * 判断时间是否在时间段内 
+	 *  
+	 * @param date 
+	 *            当前时间 yyyy-MM-dd HH:mm:ss 
+	 * @param strDateBegin 
+	 *            开始时间 00:00:00 
+	 * @param strDateEnd 
+	 *            结束时间 00:05:00 
+	 * @return 
+	 */  
+	public static boolean isInDate(Date date, String strDateBegin,  
+	        String strDateEnd,String signinB,String signinE) {  
+		int B=Integer.valueOf(signinB);
+		int E=Integer.valueOf(signinE);
+		
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+	    String strDate = sdf.format(date);  
+	    // 截取当前时间时分秒  
+	    int strDateH = Integer.parseInt(strDate.substring(11, 13));  
+	    int strDateM = Integer.parseInt(strDate.substring(14, 16));  
+	    int strDateS = Integer.parseInt(strDate.substring(17, 19));  
+	    // 截取开始时间时分秒  
+	    int strDateBeginH = Integer.parseInt(strDateBegin.substring(0, 2));  
+	    int strDateBeginM = Integer.parseInt(strDateBegin.substring(3, 5));  
+	    int strDateBeginS = Integer.parseInt(strDateBegin.substring(6, 8)); 
+	    if (strDateBeginM-B<0) {
+			strDateBeginH-=1;
+			strDateBeginM=strDateBeginM+60-B;
+		}else {
+			strDateBeginM=strDateBeginM-B;
+		}
+	    // 截取结束时间时分秒  
+	    int strDateEndH = Integer.parseInt(strDateEnd.substring(0, 2));  
+	    int strDateEndM = Integer.parseInt(strDateEnd.substring(3, 5));  
+	    int strDateEndS = Integer.parseInt(strDateEnd.substring(6, 8));
+	    if (strDateEndM+E>=60) {
+			strDateEndH+=1;
+			strDateEndM=strDateEndM+E-60;
+		}else {
+			strDateEndM=strDateEndM+E;
+		}
+	    if ((strDateH >= strDateBeginH && strDateH <= strDateEndH)) {  
+	        // 当前时间小时数在开始时间和结束时间小时数之间  
+	        if (strDateH > strDateBeginH && strDateH < strDateEndH) {  
+	            return true;  
+	            // 当前时间小时数等于开始时间小时数，分钟数在开始和结束之间  
+	        } else if (strDateH == strDateBeginH && strDateM >= strDateBeginM  
+	                && strDateM <= strDateEndM) {  
+	            return true;  
+	            // 当前时间小时数等于开始时间小时数，分钟数等于开始时间分钟数，秒数在开始和结束之间  
+	        } else if (strDateH == strDateBeginH && strDateM == strDateBeginM  
+	                && strDateS >= strDateBeginS && strDateS <= strDateEndS) {  
+	            return true;  
+	        }  
+	        // 当前时间小时数大等于开始时间小时数，等于结束时间小时数，分钟数小等于结束时间分钟数  
+	        else if (strDateH >= strDateBeginH && strDateH == strDateEndH  
+	                && strDateM <= strDateEndM) {  
+	            return true;  
+	            // 当前时间小时数大等于开始时间小时数，等于结束时间小时数，分钟数等于结束时间分钟数，秒数小等于结束时间秒数  
+	        } else if (strDateH >= strDateBeginH && strDateH == strDateEndH  
+	                && strDateM == strDateEndM && strDateS <= strDateEndS) {  
+	            return true;  
+	        } else {  
+	            return false;  
+	        }  
+	    } else {  
+	        return false;  
+	    }  
+	} 
 	/*@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 
