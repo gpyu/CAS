@@ -4,7 +4,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,6 +93,12 @@ public class KqCourseStudentController extends BaseController {
 	public void datagrid(KqCourseStudentEntity kqCourseStudent,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(KqCourseStudentEntity.class, dataGrid);
 		//查询条件组装器
+		String courseId = request.getParameter("courseId");
+		if(StringUtils.isNotEmpty(courseId)) {
+			cq.add(Restrictions.eq("courseId", courseId));
+		}else {
+			cq.add(Restrictions.eq("courseId", ""));
+		}
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, kqCourseStudent, request.getParameterMap());
 		this.kqCourseStudentService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -158,6 +166,8 @@ public class KqCourseStudentController extends BaseController {
 			kqCourseStudent = kqCourseStudentService.getEntity(KqCourseStudentEntity.class, kqCourseStudent.getId());
 			req.setAttribute("kqCourseStudentPage", kqCourseStudent);
 		}
+		String sql = "select a.id,a.realname from t_s_base_user a left join t_s_role_user b on a.ID = b.userid left join t_s_role c on c.ID = b.roleid where c.rolename = '学生' order by convert(a.realname using gbk) asc";
+		req.setAttribute("studentList", systemService.findForJdbc(sql));
 		return new ModelAndView("com/cas/kqcoursestudent/kqCourseStudent");
 	}
 	

@@ -77,6 +77,12 @@ public class KqCourseInfoController extends BaseController {
 	public ModelAndView list(HttpServletRequest request) {
 		return new ModelAndView("com/cas/kqcourseinfo/kqCourseInfoList");
 	}
+	
+	
+	@RequestMapping(params = "courseStudentList")
+	public ModelAndView courseStudentList(HttpServletRequest request) {
+		return new ModelAndView("com/cas/kqcourseinfo/kqCourseStudentInfoList");
+	}
 
 	/**
 	 * easyui AJAX请求数据
@@ -95,6 +101,11 @@ public class KqCourseInfoController extends BaseController {
 		this.kqCourseInfoService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
+	
+	
+	
+	
+	
 
 	/**
 	 * 删除课程名称维护
