@@ -25,20 +25,20 @@
    <t:dgCol title="学生" field="studentId" dictionary="t_s_base_user,id,realname"  width="120"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
    <t:dgDelOpt title="删除" url="kqCourseStudentController.do?del&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
-   <t:dgToolBar title="录入" icon="icon-add" url="kqCourseStudentController.do?addorupdate" funname="add"></t:dgToolBar>
+   <t:dgToolBar title="录入" icon="icon-add" url="kqCourseStudentController.do?addorupdate" funname="addItem"></t:dgToolBar>
   	<t:dgToolBar title="excelImport" icon="icon-put" funname="ImportXls"></t:dgToolBar>
 	<t:dgToolBar title="excelOutput" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
 	<t:dgToolBar title="templateDownload" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
   <script type="text/javascript">
   var mainId = '';
-  /* function addItem(){
+  function addItem(){
 	  if(mainId  == ''){
 		  tip("请主项目");
 		  return;
 	  }
 	  $.dialog({
-			content: 'url:kqCourseTimeInfoController.do?addorupdate&courseId='+mainId,
+			content: 'url:kqCourseStudentController.do?addorupdate&courseId='+mainId,
 			lock : true,
 			zIndex: getzIndex(),
 			width:500,
@@ -55,30 +55,6 @@
 		    cancel: true 
 		}); 
   }
-  function updateItem(){
-	  var row = $("#kqCourseTimeInfoList").datagrid('getSelected');
-	  if(row  == null){
-		  tip("请选择编辑项");
-		  return;
-	  }
-	  $.dialog({
-			content: 'url:kqCourseTimeInfoController.do?addorupdate&id='+row.id+'&courseId='+mainId,
-			lock : true,
-			zIndex: getzIndex(),
-			width:500,
-			height:600,
-			title:'编辑',
-			opacity : 0.3,
-			cache:false,
-		    ok: function(){
-		    	iframe = this.iframe.contentWindow;
-				saveObj();
-				return false;
-		    },
-		    cancelVal: '关闭',
-		    cancel: true 
-		}); 
-  } */
   $(function(){
 	  
 	  $("#kqCourseAssignList").datagrid({  

@@ -13,15 +13,21 @@
 				<tr>
 					<td align="right">
 						<label class="Validform_label">
-							学生id:
+							学生:
 						</label>
 					</td>
 					<td class="value">
-						<input class="inputxt" id="studentId" name="studentId"   value="${kqCourseStudentPage.studentId}" datatype="*" />
+						<select id="studentId" name="studentId" required="required">
+							<option value="">--请选择--</option>
+							<c:forEach items="${studentList}" var="student">
+								<option value="${student.id}">${student.realname}</option>
+							</c:forEach>
+						</select>
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
-				<tr>
+				<input class="inputxt" id="courseId" name="courseId" hidden="true"  value="${param.courseId}" datatype="*" />
+				<%-- <tr>
 					<td align="right">
 						<label class="Validform_label">
 							课程id:
@@ -31,7 +37,7 @@
 						<input class="inputxt" id="courseId" name="courseId"   value="${kqCourseStudentPage.courseId}" datatype="*" />
 						<span class="Validform_checktip"></span>
 					</td>
-				</tr>
+				</tr> --%>
 			</table>
 		</t:formvalid>
  </body>
