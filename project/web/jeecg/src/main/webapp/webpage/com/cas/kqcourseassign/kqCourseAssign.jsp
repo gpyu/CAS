@@ -7,7 +7,7 @@
   <t:base type="jquery,easyui,tools,DatePicker"></t:base>
  </head>
  <body style="overflow-y: hidden" scroll="no">
-  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="kqCourseAssignController.do?save">
+  <t:formvalid formid="formobj" dialog="true" usePlugin="password" beforeSubmit="removeDisable" layout="table" action="kqCourseAssignController.do?save">
 			<input id="id" name="id" type="hidden" value="${kqCourseAssignPage.id }">
 			<table style="width: 600px;" cellpadding="0" cellspacing="1" class="formtable">
 				<tr>
@@ -29,7 +29,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<select style="width:300px;">
+						<select style="width:300px;" name="kqPlace" id="kqPlace" required="required">
 							<option value="">--请选择--</option>	
 							<c:forEach items="${orgs}" var="i">
 								<option value="${i.id }">${i.description }</option>
@@ -87,5 +87,11 @@
 			</table>
 		</t:formvalid>
 		<script type="text/javascript">
+		$("#kqPlace").val("${kqCourseAssignPage.kqPlace}");
+		$("select[name='teacherId']").val("${kqCourseAssignPage.teacherId}");
+		function removeDisable(){
+			$("select[name='teacherId']").removeAttr("disable");
+			$("select[name='teacherId']").removeAttr("disabled");
+		}
 		</script>
  </body>

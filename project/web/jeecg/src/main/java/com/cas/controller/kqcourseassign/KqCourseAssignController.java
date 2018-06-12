@@ -127,7 +127,7 @@ public class KqCourseAssignController extends BaseController {
 	@RequestMapping(params = "save")
 	@ResponseBody
 	public AjaxJson save(KqCourseAssignEntity kqCourseAssign, HttpServletRequest request) {
-		String message = null;
+ 		String message = null;
 		AjaxJson j = new AjaxJson();
 		if (StringUtil.isNotEmpty(kqCourseAssign.getId())) {
 			message = "课程信息更新成功";
@@ -165,7 +165,7 @@ public class KqCourseAssignController extends BaseController {
 			kqCourseAssign.setTeacherId(user.getId());
 		}
 		req.setAttribute("kqCourseAssignPage", kqCourseAssign);
-		req.setAttribute("orgs", systemService.findForJdbc("select a.id,a.description from t_s_depart a where a.org_type = '2' order by a.description asc"));
+		req.setAttribute("orgs", systemService.findForJdbc("select a.id id,a.org_name description from kq_classroom a order by a.org_name asc"));
 		return new ModelAndView("com/cas/kqcourseassign/kqCourseAssign");
 	}
 	

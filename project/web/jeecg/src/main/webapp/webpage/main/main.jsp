@@ -244,11 +244,8 @@ a:hover {
 <!-- 底部 -->
 <div region="south" border="false" style="height: 25px; overflow: hidden;">
     <div align="center" style="color: #CC99FF; padding-top: 2px">&copy;
-        <t:mutiLang langKey="common.copyright"/>
         <span class="tip">
-            <a href="http://www.jeecg.org" title=" JEECG Framework  <t:mutiLang langKey="system.version.number"/>"> JEECG Framework  <t:mutiLang langKey="system.version.number"/></a>
-            <t:mutiLang langKey="common.copyright"/>:
-            <a href="#" title=" JEECG Framework  <t:mutiLang langKey="system.version.number"/>">JEECG Framework  <t:mutiLang langKey="system.version.number"/></a>
+            <a href="#" title="工程实训第三小组">工程实训第三小组</a>
         </span>
     </div>
 </div>
