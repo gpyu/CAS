@@ -107,9 +107,10 @@ public class SigninRestController {
 				+" left join kq_course_time_info ct on t.id=ct.course_id"
 				+" left join kq_timetable tt on tt.classnumber=ct.bein_time"
 				+" left join kq_timetable ttt on ttt.classnumber=ct.end_time"
+				+" left join kq_base_parameter tttt on 1=1"
 				+" where t.course_status='1' and ct.week=dayofweek(now()) and"
-				+" curtime()  between     date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval ( tttt.sigin_end_time ) minute)"
-				+" and curtime()  between     date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time  ) minute)"
+				+" curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
+				+" and curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute)"
 				+" and stu.student_id='"+studentId+"';";
 		
 //		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
