@@ -41,6 +41,30 @@ public class KqBaseParameterEntity implements java.io.Serializable {
 	private java.lang.Integer signoffBeginTime;
 	/**下课后几分钟可签退*/
 	private java.lang.Integer signoffEndTime;
+	/**开学时间*/
+	private java.lang.String startTerm;
+	/**放假时间*/
+	private java.lang.String endTerm;
+	@Column(name ="START_TERM",nullable=true)
+	public java.lang.String getStartTerm() {
+		return startTerm;
+	}
+
+	public void setStartTerm(java.lang.String startTerm) {
+		this.startTerm = startTerm;
+	}
+	@Column(name ="END_TERM",nullable=true)
+	public java.lang.String getEndTerm() {
+		return endTerm;
+	}
+
+	public void setEndTerm(java.lang.String endTerm) {
+		this.endTerm = endTerm;
+	}
+
+	
+	
+	
 	
 	/**
 	 *方法: 取得java.lang.String

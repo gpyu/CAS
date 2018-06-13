@@ -88,11 +88,11 @@ public class SigninRestController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{studentId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据ID获取课程签到内容",notes="根据ID获取课程签到内容",httpMethod="GET",produces="application/json")
 
-	public ResponseEntity<?> get(@ApiParam(required=true,name="studentId",value="学生ID") @PathVariable("studentId") String studentId) {
+	public ResponseEntity<?> get(@ApiParam(required=true,name="username",value="用户名") @PathVariable("username") String username) {
 		JSONObject sessions = new JSONObject();
 		JSONObject speakers = new JSONObject();
 		
@@ -108,10 +108,12 @@ public class SigninRestController {
 				+" left join kq_timetable tt on tt.classnumber=ct.bein_time"
 				+" left join kq_timetable ttt on ttt.classnumber=ct.end_time"
 				+" left join kq_base_parameter tttt on 1=1"
+				+" left join kq_attendance att on att.course_id=t.id"
 				+" where t.course_status='1' and ct.week=date_format(curdate(),'%w') and"
-				+" curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
-				+" or curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute)"
-				+" and stu.student_id='"+studentId+"';";
+				+" (curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
+				+" or curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute))"
+				+" and att.date is null"
+				+" and us.username='"+username+"';";
 		
 //		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
 //				+ " left join kq_course b on a.course_id = b.ID"
