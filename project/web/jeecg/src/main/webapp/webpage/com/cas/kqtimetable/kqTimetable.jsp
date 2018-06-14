@@ -39,7 +39,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="Wdate" onClick="WdatePicker({dateFmt:'HH:mm:ss'})"  style="width: 150px" id="beginTime" name="beginTime" ignore="ignore"    value="<fmt:formatDate value='${kqTimetablePage.beginTime}' type="date" pattern="yyyy-MM-dd hh:mm:ss"/>" />
+						<input class="Wdate" onClick="WdatePicker({dateFmt:'HH:mm:ss'})"  style="width: 150px" id="beginTime" name="beginTime" ignore="ignore"    value="${kqTimetablePage.beginTime}" />
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
@@ -50,7 +50,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="Wdate" onClick="WdatePicker({dateFmt:'HH:mm:ss'})"  style="width: 150px" id="endTime" name="endTime" ignore="ignore"    value="<fmt:formatDate value='${kqTimetablePage.endTime}' type="date" pattern="yyyy-MM-dd hh:mm:ss"/>" />
+						<input class="Wdate" onClick="WdatePicker({dateFmt:'HH:mm:ss'})"  style="width: 150px" id="endTime" name="endTime" ignore="ignore"    value="${kqTimetablePage.endTime}" />
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>

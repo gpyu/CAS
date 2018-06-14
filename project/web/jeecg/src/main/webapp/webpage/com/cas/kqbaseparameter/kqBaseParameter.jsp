@@ -76,7 +76,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  style="width: 150px" id="startTerm" name="startTerm" ignore="ignore"    value="<fmt:formatDate value='${kqBaseParameterPage.startTerm}' type="date" pattern="yyyy-MM-dd"/>" />
+						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  style="width: 150px" id="startTerm" name="startTerm" ignore="ignore"    value='${kqBaseParameterPage.startTerm}'" />
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
@@ -88,7 +88,7 @@
 						</label>
 					</td>
 					<td class="value">
-						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  style="width: 150px" id="endTerm" name="endTerm" ignore="ignore"    value="<fmt:formatDate value='${kqBaseParameterPage.endTerm}' type="date" pattern="yyyy-MM-dd"/>" />
+						<input class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"  style="width: 150px" id="endTerm" name="endTerm" ignore="ignore" value='${kqBaseParameterPage.endTerm}' " />
 						<span class="Validform_checktip"></span>
 					</td>
 				</tr>
