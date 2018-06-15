@@ -12,6 +12,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.jeecgframework.core.beanvalidator.BeanValidators;
+import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.util.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,7 +101,7 @@ public class SigninRestController {
 		
 		
 		
-		String sql="select distinct info.course_name,info.course_class_hour,us.realname,ct.week,ct.bein_time,ct.end_time from kq_course_assign t"
+		String sql="select distinct info.course_name,t.id,info.course_class_hour,us.realname,ct.week,ct.bein_time,ct.end_time from kq_course_assign t"
 				+" left join kq_course_info info on t.kq_course_info_id=info.id"
 				+" left join kq_course_student stu on stu.course_id=t.id"
 				+" left join t_s_base_user us on us.ID=stu.student_id"
@@ -141,18 +142,18 @@ public class SigninRestController {
 	@RequestMapping(value = "/signin/{studentid}&&{slatitude}&&{slongitude}&&{courseid}", method = RequestMethod.GET)
 	@ResponseBody
 	@ApiOperation(value="根据地理位置签到",notes="根据地理位置签到",httpMethod="GET",produces="application/json")
-	public boolean signin(
+	public ResponseEntity<?> signin(
 			@ApiParam(name = "studentid", value = "学生id", required = true) @PathVariable("studentid")String studentid,
 			@ApiParam(name = "courseid", value = "课程id", required = true) @PathVariable("courseid")String courseid1,
 			@ApiParam(name = "slongitude", value = "学生经度", required = true)@PathVariable("slongitude") String slongitude,
 			@ApiParam(name = "slatitude", value = "学生纬度", required = true)@PathVariable("slatitude") String slatitude){
-		
-		String sql0="select id from kq_course_assign where kq_course_info_id='"+courseid1+"';";
+		JSONObject speakers = new JSONObject();
+		String sql0="select kq_course_info_id from kq_course_assign where id='"+courseid1+"';";
 		List<Map<String,Object>> cidinfo =kqClassNoticeService.findForJdbc(sql0);
-		String courseid=cidinfo.get(0).get("id").toString();
+		String courseid=cidinfo.get(0).get("kq_course_info_id").toString();
 		String sql1="select a.longitude,a.lantitude from kq_classroom a "
 				+"RIGHT join kq_course_assign b on a.id=b.kq_place "
-				+"where b.kq_course_info_id='"+courseid1+"';";
+				+"where b.id='"+courseid1+"';";
 		List<Map<String,Object>> roominfo =kqClassNoticeService.findForJdbc(sql1);
 		double rlongitude=Double.parseDouble(roominfo.get(0).get("longitude").toString());
 		double rlatitude=Double.parseDouble(roominfo.get(0).get("lantitude").toString());
@@ -176,7 +177,7 @@ public class SigninRestController {
 		    if (w < 0){        
 		        w = 0;      
 		    }
-		String sql3="select bein_time,end_time from kq_course_time_info where course_id='"+courseid+"'and week='"+w+"';";
+		String sql3="select bein_time,end_time from kq_course_time_info where course_id='"+courseid1+"'and week='"+w+"';";
 		List<Map<String,Object>> courseinfo =kqClassNoticeService.findForJdbc(sql3);
 		String begin=courseinfo.get(0).get("bein_time").toString();
 		String end=courseinfo.get(0).get("end_time").toString();
@@ -192,7 +193,8 @@ public class SigninRestController {
 		if (distance<=sdistance) {
 			KqAttendanceEntity kqAttendanceEntity=new KqAttendanceEntity();
 			kqAttendanceEntity.setCourseId(courseid);
-			kqAttendanceEntity.setStudentId(studentid);
+			Map<String,Object> map = kqClassNoticeService.findOneForJdbc("select * from t_s_base_user a where a.username = '"+studentid+"'");
+			kqAttendanceEntity.setStudentId(map.get("id").toString());
 			
 			//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");			
 			kqAttendanceEntity.setDate(new Date());
@@ -202,10 +204,15 @@ public class SigninRestController {
 			kqAttendanceEntity.setType("2");//下课签到
 			}
 			kqClassNoticeService.save(kqAttendanceEntity);
-			return true;
+			//return true;
+			speakers.put("data", "误差距离："+distance+",签到成功");
+			speakers.put("isSign", true);
 		}else {
-			return false;
+			speakers.put("data", "误差距离："+distance+"米,大于"+sdistance+"米,签到失败");
+			speakers.put("isSign", false);
 		}
+		return new ResponseEntity(speakers, HttpStatus.OK);
+			
 	}
 	/** 
 	 * 判断时间是否在时间段内 

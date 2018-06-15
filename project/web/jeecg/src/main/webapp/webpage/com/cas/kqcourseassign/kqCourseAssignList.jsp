@@ -3,13 +3,13 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="kqCourseAssignList" title="课程信息" actionUrl="kqCourseAssignController.do?datagrid" idField="id" fit="true">
+  <t:datagrid name="kqCourseAssignList" title="课程信息" queryMode="group" actionUrl="kqCourseAssignController.do?datagrid" idField="id" fit="true">
    <t:dgCol title="编号" field="id" hidden="true"></t:dgCol>
-   <t:dgCol title="课程" field="kqCourseInfoId"  dictionary="kq_course_info,id,course_name" width="120"></t:dgCol>
-   <t:dgCol title="地点" field="kqPlace"  dictionary="kq_classroom,id,org_name"  width="120"></t:dgCol>
-   <t:dgCol title="老师" field="teacherId" dictionary="t_s_base_user,id,realname"  width="120"></t:dgCol>
-   <t:dgCol title="课程编号" field="courseCode"   width="120"></t:dgCol>
-   <t:dgCol title="课程状态" field="courseStatus" dictionary="courStatus"  width="120"></t:dgCol>
+   <t:dgCol title="课程" field="kqCourseInfoId" query="true" dictionary="kq_course_info,id,course_name" width="120"></t:dgCol>
+   <t:dgCol title="地点" field="kqPlace" query="true"  dictionary="kq_classroom,id,org_name"  width="120"></t:dgCol>
+   <t:dgCol title="老师" field="teacherId"  query="true" dictionary="t_s_base_user,id,realname"  width="120"></t:dgCol>
+   <t:dgCol title="课程编号" field="courseCode"  query="true"   width="120"></t:dgCol>
+   <t:dgCol title="课程状态" field="courseStatus" query="true"  dictionary="courStatus"  width="120"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
    <t:dgDelOpt title="删除" url="kqCourseAssignController.do?del&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
    <t:dgToolBar title="录入" icon="icon-add" url="kqCourseAssignController.do?addorupdate" funname="add"></t:dgToolBar>
