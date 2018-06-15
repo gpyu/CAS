@@ -7,15 +7,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="map-page">
-  <!-- <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>
-    <div #map id="map_container"></div>
-    <div id="btn_location">
-    <button ion-button  class="btn_loaction" (click)="getLocationByBrowser()">浏览器定位</button>
-    <button ion-button  class="btn_loaction" (click)="getLocationByIp()">IP定位</button>
-    <button ion-button  class="btn_loaction" (click)="getLocationByCity()">城市定位</button>
-    <button ion-button  class="btn_loaction" (click)="getLocationByLatLon()">经纬度定位</button>
-    <button ion-button  class="btn_loaction" (click)="getLocation()">GPS点击定位</button>
-  </div> -->
-  <baidu-map [options]="opts" ></baidu-map>
+<ion-content class="map-page" id="ma">
+  <baidu-map [options]="opts"></baidu-map>
+  <ion-fab bottom right #fab>
+  <button ion-fab (click)="setLocation()">定位</button></ion-fab>
+  <div>
+    <p>经纬度：<span id='lat'></span>  <span id='lng'></span><br />地址：<span id='address'></span></p>
+    <button ion-button  (click)="getLocationInfo()" >获取当前经纬度坐标</button>
+    <button ion-button (click)="setLocation()"  >地图定位</button>
+  </div>
 </ion-content>

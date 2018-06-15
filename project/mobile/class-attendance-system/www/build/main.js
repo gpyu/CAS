@@ -7,7 +7,7 @@ webpackJsonp([0],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_popover_about_popover__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_popover_about_popover__ = __webpack_require__(212);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -51,7 +51,7 @@ var AboutPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_conference_data__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_data__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__schedule_filter_schedule_filter__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -178,75 +178,14 @@ var SchedulePage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionDetailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_conference_data__ = __webpack_require__(31);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var SessionDetailPage = (function () {
-    function SessionDetailPage(dataProvider, navParams) {
-        this.dataProvider = dataProvider;
-        this.navParams = navParams;
-    }
-    SessionDetailPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        this.dataProvider.load().subscribe(function (data) {
-            if (data &&
-                data.schedule &&
-                data.schedule[0] &&
-                data.schedule[0].groups) {
-                for (var _i = 0, _a = data.schedule[0].groups; _i < _a.length; _i++) {
-                    var group = _a[_i];
-                    if (group && group.sessions) {
-                        for (var _b = 0, _c = group.sessions; _b < _c.length; _b++) {
-                            var session = _c[_b];
-                            if (session && session.id === _this.navParams.data.sessionId) {
-                                _this.session = session;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    };
-    SessionDetailPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-session-detail',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\session-detail\session-detail.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title *ngIf="session">{{session.name}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div *ngIf="session">\n\n    <h1>{{session.name}}</h1>\n\n    <h4 *ngFor="let speaker of session?.speakers">\n\n    {{speaker.name}}\n\n  </h4>\n\n    <p>\n\n      {{session.timeStart}} - {{session.timeEnd}}\n\n    </p>\n\n    <p>{{session.location}}</p>\n\n    <p>{{session.description}}</p>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\session-detail\session-detail.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_conference_data__["a" /* ConferenceData */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]])
-    ], SessionDetailPage);
-    return SessionDetailPage;
-}());
-
-//# sourceMappingURL=session-detail.js.map
-
-/***/ }),
-
-/***/ 112:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SpeakerListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_data_service_data_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_user_data__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_user_data__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -265,131 +204,93 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 ;
 var SpeakerListPage = (function () {
-    function SpeakerListPage(
-        // private platform: Platform,
-        dataService, actionSheetCtrl, navCtrl, confData, config, inAppBrowser, userData) {
+    function SpeakerListPage(dataService, actionSheetCtrl, navCtrl, toast, confData, config, inAppBrowser, userData) {
         this.dataService = dataService;
         this.actionSheetCtrl = actionSheetCtrl;
         this.navCtrl = navCtrl;
+        this.toast = toast;
         this.confData = confData;
         this.config = config;
         this.inAppBrowser = inAppBrowser;
         this.userData = userData;
         this.speakers = [];
-        this.latitude = 26.0471255;
-        this.longitude = 119.33022111;
-        this.opts = {
-            centerAndZoom: {
-                lng: this.longitude,
-                lat: this.latitude,
-                zoom: 15
-            },
-            enableMapClick: true,
-            disableDoubleClickZoom: false,
-        };
-    }
-    // ngOnInit(): void {
-    //   this.platform.ready().then(
-    //     () => {
-    //       console.log("MyApp::constructor platform.ready2");
-    //       baidumap_location.getCurrentPosition(function (result) {
-    //         alert(JSON.stringify(result, null, 4))
-    //         console.log("================")
-    //         console.log(JSON.stringify(result, null, 4));
-    //       }, function (error) {
-    //         console.log(error);
-    //       });
-    //     }
-    //   );
-    // }
-    SpeakerListPage.prototype.getLocation = function () {
-        // let lat = this.latitude;
-        // let lon = this.longitude;
+        this.shownSessions = [];
         window.baiduLocation.startLocation(function (success) {
-            alert(JSON.stringify(success));
-            alert(success.latitude + "," + success.longitude + "," + success.address);
+            document.getElementById('lng2').innerHTML = success.longitude;
+            document.getElementById('lat2').innerHTML = success.latitude;
+            document.getElementById('address2').innerHTML = success.address;
         }, function (error) {
-            /*
-                 error={
-                        code:   //code=-1,为本地错误,code>0为百度定位的错误码
-                        msg:  //错误描述
-                 }
-            */
+            /*error={code:   //code=-1,为本地错误,code>0为百度定位的错误码  msg:  //错误描述}*/
         }, {
             CoorType: 'bd09ll',
-            IsNeedAddress: false //是否需要返回坐标的地址信息，默认是false  
+            IsNeedAddress: true //是否需要返回坐标的地址信息，默认是false
         });
-        // baidu_location.getCurrentPosition(function(data){
-        //       console.log("success");
-        //       alert(JSON.stringify(data));
-        //     console.log(JSON.stringify(data));
-        // }, function(data){
-        // console.log("fail");
-        // console.log(data);
-        // alert(JSON.stringify(data));
-        // });
-        // navigator.geolocation.getCurrentPosition((position)=>{
-        //   this.opts.centerAndZoom.lng = position.coords.longitude;
-        //   this.opts.centerAndZoom.lat = position.coords.latitude
-        //   console.log(position.coords.longitude);
-        //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
-        //   let mapOpts : MapOptions = {
-        //     centerAndZoom: {
-        //       lng: position.coords.longitude,
-        //       lat: position.coords.latitude,
-        //       zoom: 15
-        //     },
-        //     enableMapClick:true,
-        //     disableDoubleClickZoom:false, 
-        //   };
-        //   this.opts = mapOpts;
-        //   console.log("ionViewDidLoad"+this.opts);
-        // },(error) =>{
-        //  alert('定位錯誤code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
-        // });
-    };
+    }
     SpeakerListPage.prototype.ionViewDidLoad = function () {
-        // baidumap_location.getCurrentPosition(function (result) {
-        //   alert(JSON.stringify(result, null, 4))
-        //   console.log("================")
-        //   console.log(JSON.stringify(result, null, 4));
-        // }, function (error) {
-        //   console.log(error+"================")
-        // });
-        // this.userData.getUsername().then((result)=>{
-        //   this.username = result;
-        //   this.dataService.get('/classSigninInfo/'+this.username).subscribe((result:any)=>{
-        //     this.speakers = result;
-        //   })
-        // });
-        // this.confData.getSpeakers().subscribe((speakers: any[]) => {
-        //   this.speakers = speakers;
-        // });
+        this.updateSchedule();
     };
-    SpeakerListPage.prototype.goToSessionDetail = function (session) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__["a" /* SessionDetailPage */], { sessionId: session.id });
+    SpeakerListPage.prototype.ionViewWillEnter = function () {
+        this.updateSchedule();
+    };
+    SpeakerListPage.prototype.updateSchedule = function () {
+        var _this = this;
+        this.userData.getUsername().then(function (result) {
+            _this.dataService.get('/classSigninInfo/' + result).subscribe(function (result) {
+                console.log(result);
+                if (result.isSign) {
+                    _this.shownSessions = result.data;
+                }
+                else {
+                }
+            });
+        });
+    };
+    SpeakerListPage.prototype.getLocation = function () {
+        var lng = document.getElementById('lng2').innerHTML;
+        //let lat = document.getElementById('lat2').innerHTML;
+        //let address = document.getElementById('address2').innerHTML;
+        if (lng == null || lng == '') {
+            this.toast.create({ message: "请先到【地图】模块获取位置信息", position: 'center', duration: 3000 }).present();
+            return;
+        }
+    };
+    SpeakerListPage.prototype.siginCourse = function (courseid) {
+        var _this = this;
+        var lng2 = document.getElementById('lng2').innerHTML;
+        var lat2 = document.getElementById('lat2').innerHTML;
+        var address2 = document.getElementById('address2').innerHTML;
+        this.toast.create({ message: "当前位置：" + address2, position: 'top', duration: 1000 }).present();
+        this.userData.getUsername().then(function (result) {
+            _this.dataService.get('/classSigninInfo/signin/' + result + '&&' + lat2 + '&&' + lng2 + '&&' + courseid).subscribe(function (result) {
+                console.log(JSON.stringify(result));
+                _this.toast.create({ message: result.data, position: 'center', duration: 3000 }).present();
+                _this.toast.create({ message: '当前坐标：' + lng2 + "," + lat2, position: 'top', duration: 3000 }).present();
+                _this.updateSchedule();
+            });
+        });
     };
     SpeakerListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-speaker-list',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\speaker-list\speaker-list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>签到</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="outer-content speaker-list">\n\n  <ion-card-content class="outer-content">\n\n    <button ion-item   (click)="getLocation()">\n\n      <h3>location</h3>\n\n    </button>\n\n    <!-- <ion-list>\n\n      <button ion-item *ngFor="let session of sessions" (click)="goToSessionDetail(session)">\n\n        <h3>{{session.name}}</h3>\n\n      </button>\n\n\n\n      <button ion-item (click)="goToSpeakerDetail(speaker)">\n\n        <h3>About {{speaker.name}}</h3>\n\n      </button>\n\n    </ion-list> -->\n\n  </ion-card-content>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\speaker-list\speaker-list.html"*/
+            selector: 'page-speaker-list',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\speaker-list\speaker-list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>签到</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<span id=\'lat2\'></span><span id=\'lng2\'></span><span id=\'address2\'></span><br />\n\n  <span id=\'locationId\'></span>\n\n<ion-content class="outer-content speaker-list">\n\n  <!-- <button ion-item >\n\n      <h3 >（点击课程签到）</h3>\n\n  </button> -->\n\n  \n\n  <!-- <ion-card-content class="outer-content"  *ngFor="let session of shownSessions">\n\n    \n\n    <ion-list>\n\n      \n\n      <button ion-item  >\n\n        <h3>{{session.course_name}}</h3>\n\n      </button>\n\n\n\n    </ion-list>\n\n  </ion-card-content>\n\n</ion-content> -->\n\n\n\n<ion-card  *ngIf="shownSessions.length == 0">\n\n    <ion-card-content>\n\n      <p>暂无课程信息</p>\n\n    </ion-card-content>\n\n</ion-card>\n\n\n\n\n\n<div  *ngIf="shownSessions.length != 0">\n\n<ion-card *ngFor="let session of shownSessions">\n\n    <ion-item >\n\n      <ion-avatar item-start>\n\n        <img src="assets/img/icon.png" style="width:37px;height:37px;">\n\n      </ion-avatar>\n\n      <h2>课程：{{session.course_name}}</h2>\n\n    </ion-item>\n\n  \n\n    <img src="assets/img/course.jpg" style="width:50%;height:50%;">\n\n  \n\n    <ion-card-content>\n\n      <button  ion-button (click)="siginCourse(session.id)">签到</button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n</div>\n\n\n\n\n\n\n\n<!-- <ion-list>\n\n      <button ion-item *ngFor="let session of sessions" (click)="goToSessionDetail(session)">\n\n        <h3>{{session.name}}</h3>\n\n      </button>\n\n\n\n      <button ion-item (click)="goToSpeakerDetail(speaker)">\n\n        <h3>About {{speaker.name}}</h3>\n\n      </button>\n\n    </ion-list> -->'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\speaker-list\speaker-list.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__providers_data_service_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_data_service_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__["a" /* ConferenceData */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__["a" /* ConferenceData */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Config */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__providers_user_data__["a" /* UserData */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_user_data__["a" /* UserData */]) === "function" && _g || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_data_service_data_service__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_6__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__["a" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__["a" /* ToastController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__["a" /* ConferenceData */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__["a" /* ConferenceData */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Config */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__["a" /* InAppBrowser */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__providers_user_data__["a" /* UserData */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_user_data__["a" /* UserData */]) === "function" && _h || Object])
     ], SpeakerListPage);
     return SpeakerListPage;
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=speaker-list.js.map
 
 /***/ }),
 
-/***/ 113:
+/***/ 112:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__ = __webpack_require__(44);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -401,80 +302,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-// import {Platform} from 'ionic-angular';
-// declare var cordova :any;
+
 var MapPage = (function () {
-    function MapPage(
-        // private platform: Platform,
-        storage) {
+    function MapPage(toast, storage) {
+        this.toast = toast;
         this.storage = storage;
-        this.latitude = 26.067811;
-        this.longitude = 119.207798;
+        this.latitude = 26.079391;
+        this.longitude = 119.309794;
         this.opts = {
             centerAndZoom: {
                 lng: this.longitude,
                 lat: this.latitude,
-                zoom: 15
+                zoom: 19,
+            },
+            enableMapClick: true,
+            disableDoubleClickZoom: true,
+        };
+    }
+    MapPage.prototype.ionViewWillEnter = function () {
+        console.log("2.0 ionViewWillEnter 顾名思义，当将要进入页面时触发");
+        window.baiduLocation.startLocation(function (success) {
+            document.getElementById('lng').innerHTML = success.longitude;
+            document.getElementById('lat').innerHTML = success.latitude;
+            document.getElementById('address').innerHTML = success.address;
+        }, function (error) {
+            /*error={code:   //code=-1,为本地错误,code>0为百度定位的错误码  msg:  //错误描述}*/
+        }, {
+            CoorType: 'bd09ll',
+            IsNeedAddress: true //是否需要返回坐标的地址信息，默认是false
+        });
+    };
+    MapPage.prototype.ionViewDidLoad = function () {
+    };
+    MapPage.prototype.getLocationInfo = function () {
+    };
+    MapPage.prototype.setLocation = function () {
+        var lng = document.getElementById('lng').innerHTML;
+        var lat = document.getElementById('lat').innerHTML;
+        var address = document.getElementById('address').innerHTML;
+        this.toast.create({ message: "当前位置：" + address, position: 'center', duration: 3000 }).present();
+        this.opts = {
+            centerAndZoom: {
+                lng: parseFloat(lng),
+                lat: parseFloat(lat),
+                zoom: 19
             },
             enableMapClick: true,
             disableDoubleClickZoom: false,
         };
-        // window.baiduLocation.startLocation(  
-        //   function (success) { 
-        //     this.opts.centerAndZoom.lat = success.latitude;
-        //     this.opts.centerAndZoom.lng = success.longitude;
-        //           console.log(success.latitude + "," + success.longitude+","+success.address);  
-        //       }, function (error) {  
-        //           /*
-        //               error={
-        //                       code:   //code=-1,为本地错误,code>0为百度定位的错误码
-        //                       msg:  //错误描述
-        //               }
-        //           */
-        //       },{//这个参数也可以不传  
-        //           CoorType:'bd09ll', //设置坐标系默认'bd09ll'  
-        //           IsNeedAddress:false //是否需要返回坐标的地址信息，默认是false  
-        //       });
-    }
-    MapPage.prototype.ionViewDidLoad = function () {
-        // navigator.geolocation.getCurrentPosition((position)=>{
-        //   this.opts.centerAndZoom.lng = position.coords.longitude;
-        //   this.opts.centerAndZoom.lat = position.coords.latitude
-        //   console.log(position.coords.longitude);
-        //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
-        //   let mapOpts : MapOptions = {
-        //     centerAndZoom: {
-        //       lng: position.coords.longitude,
-        //       lat: position.coords.latitude,
-        //       zoom: 15
-        //     },
-        //     enableMapClick:true,
-        //     disableDoubleClickZoom:false, 
-        //   };
-        //   this.opts = mapOpts;
-        //   console.log("ionViewDidLoad"+this.opts);
-        // },(error) =>{
-        //  alert('定位錯誤code: ' + error.code + '\n' +  'message: ' + error.message + '\n');
-        // });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('mapCanvas'),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
     ], MapPage.prototype, "mapElement", void 0);
     MapPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-map',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>地图</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="map-page">\n\n  <!-- <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>\n\n    <div #map id="map_container"></div>\n\n    <div id="btn_location">\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByBrowser()">浏览器定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByIp()">IP定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByCity()">城市定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocationByLatLon()">经纬度定位</button>\n\n    <button ion-button  class="btn_loaction" (click)="getLocation()">GPS点击定位</button>\n\n  </div> -->\n\n  <baidu-map [options]="opts" ></baidu-map>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/
+            selector: 'page-map',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>地图</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="map-page" id="ma">\n\n  <baidu-map [options]="opts"></baidu-map>\n\n  <ion-fab bottom right #fab>\n\n  <button ion-fab (click)="setLocation()">定位</button></ion-fab>\n\n  <div>\n\n    <p>经纬度：<span id=\'lat\'></span>  <span id=\'lng\'></span><br />地址：<span id=\'address\'></span></p>\n\n    <button ion-button  (click)="getLocationInfo()" >获取当前经纬度坐标</button>\n\n    <button ion-button (click)="setLocation()"  >地图定位</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\map\map.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__["a" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__["a" /* ToastController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */]) === "function" && _c || Object])
     ], MapPage);
     return MapPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=map.js.map
 
 /***/ }),
 
-/***/ 126:
+/***/ 125:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -487,11 +382,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 126;
+webpackEmptyAsyncContext.id = 125;
 
 /***/ }),
 
-/***/ 172:
+/***/ 171:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -504,11 +399,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 172;
+webpackEmptyAsyncContext.id = 171;
 
 /***/ }),
 
-/***/ 213:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -557,7 +452,7 @@ var PopoverPage = (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -643,7 +538,7 @@ var AccountPage = (function () {
 
 /***/ }),
 
-/***/ 215:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -651,9 +546,9 @@ var AccountPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_user_data__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__signup_signup__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_angular_3_9_2_ionic_angular_components_toast_toast_controller__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__ = __webpack_require__(36);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -706,7 +601,7 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\login\login.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>登录</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<div class="logo">\n\n		<img src="assets/img/appicon.svg" alt="Ionic logo">\n\n	</div>\n\n\n\n	<form #loginForm="ngForm" novalidate>\n\n		<ion-list no-lines>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">用户名</ion-label>\n\n				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"\n\n					required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n\n				用户名必填\n\n			</p>\n\n\n\n			<ion-item>\n\n				<ion-label stacked color="primary">密码</ion-label>\n\n				<ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>\n\n				密码必填\n\n			</p>\n\n		</ion-list>\n\n\n\n		<ion-row responsive-sm>\n\n			<ion-col>\n\n				<button ion-button (click)="onLogin(loginForm)" type="submit" block>登录</button>\n\n			</ion-col>\n\n			<!--<ion-col>\n\n				<button ion-button (click)="onSignup()" color="light" block>注册</button>\n\n			</ion-col>-->\n\n		</ion-row>\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\login\login.html"*/
+            selector: 'page-user',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\login\login.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-title>登录</ion-title>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n	<div class="logo">\n\n		<img src="assets/img/icon.png">\n\n	</div>\n\n\n\n	<form #loginForm="ngForm" novalidate>\n\n		<ion-list no-lines>\n\n			<ion-item>\n\n				<ion-label stacked color="primary">用户名</ion-label>\n\n				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"\n\n					required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n\n				用户名必填\n\n			</p>\n\n\n\n			<ion-item>\n\n				<ion-label stacked color="primary">密码</ion-label>\n\n				<ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>\n\n				</ion-input>\n\n			</ion-item>\n\n			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>\n\n				密码必填\n\n			</p>\n\n		</ion-list>\n\n\n\n		<ion-row responsive-sm>\n\n			<ion-col>\n\n				<button ion-button (click)="onLogin(loginForm)" type="submit" block>登录</button>\n\n			</ion-col>\n\n			<!--<ion-col>\n\n				<button ion-button (click)="onSignup()" color="light" block>注册</button>\n\n			</ion-col>-->\n\n		</ion-row>\n\n	</form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_user_data__["a" /* UserData */],
             __WEBPACK_IMPORTED_MODULE_6__providers_data_service_data_service__["a" /* DataService */],
@@ -717,6 +612,67 @@ var LoginPage = (function () {
 }());
 
 //# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 215:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SessionDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_conference_data__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var SessionDetailPage = (function () {
+    function SessionDetailPage(dataProvider, navParams) {
+        this.dataProvider = dataProvider;
+        this.navParams = navParams;
+    }
+    SessionDetailPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.dataProvider.load().subscribe(function (data) {
+            if (data &&
+                data.schedule &&
+                data.schedule[0] &&
+                data.schedule[0].groups) {
+                for (var _i = 0, _a = data.schedule[0].groups; _i < _a.length; _i++) {
+                    var group = _a[_i];
+                    if (group && group.sessions) {
+                        for (var _b = 0, _c = group.sessions; _b < _c.length; _b++) {
+                            var session = _c[_b];
+                            if (session && session.id === _this.navParams.data.sessionId) {
+                                _this.session = session;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    };
+    SessionDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-session-detail',template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\session-detail\session-detail.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title *ngIf="session">{{session.name}}</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div *ngIf="session">\n\n    <h1>{{session.name}}</h1>\n\n    <h4 *ngFor="let speaker of session?.speakers">\n\n    {{speaker.name}}\n\n  </h4>\n\n    <p>\n\n      {{session.timeStart}} - {{session.timeEnd}}\n\n    </p>\n\n    <p>{{session.location}}</p>\n\n    <p>{{session.description}}</p>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\session-detail\session-detail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_conference_data__["a" /* ConferenceData */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]])
+    ], SessionDetailPage);
+    return SessionDetailPage;
+}());
+
+//# sourceMappingURL=session-detail.js.map
 
 /***/ }),
 
@@ -797,7 +753,7 @@ var ScheduleFilterPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_user_data__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -846,7 +802,7 @@ var SignupPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -926,26 +882,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_network__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_network__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_in_app_browser__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_about__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_about_popover_about_popover__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_account_account__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_map_map__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_about_popover_about_popover__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_account_account__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_map_map__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_schedule_schedule__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_schedule_filter_schedule_filter__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_session_detail_session_detail__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_session_detail_session_detail__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_signup_signup__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_speaker_detail_speaker_detail__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_speaker_list_speaker_list__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_tabs_page_tabs_page__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_speaker_list_speaker_list__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_tabs_page_tabs_page__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_tutorial_tutorial__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_support_support__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_conference_data__ = __webpack_require__(31);
@@ -1078,7 +1034,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_service_data_service__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(49);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1215,16 +1171,16 @@ var UserData = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConferenceApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_splash_screen__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_splash_screen__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_account_account__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_map_map__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_page_tabs_page__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_account_account__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_map_map__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_page_tabs_page__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tutorial_tutorial__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_schedule_schedule__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_speaker_list_speaker_list__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_speaker_list_speaker_list__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_conference_data__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_user_data__ = __webpack_require__(25);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1611,7 +1567,7 @@ var LocalStorageProvider = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConferenceData; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_data__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Observable__);
@@ -1785,8 +1741,8 @@ var ConferenceData = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_storage__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_network__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_network__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Observable__);
@@ -2108,7 +2064,7 @@ var DataService = (function () {
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2117,8 +2073,8 @@ var DataService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_about__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__schedule_schedule__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__speaker_list_speaker_list__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__map_map__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__speaker_list_speaker_list__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__map_map__ = __webpack_require__(112);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2144,7 +2100,7 @@ var TabsPage = (function () {
         this.mySelectedIndex = navParams.data.tabIndex || 0;
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\tabs-page\tabs-page.html"*/'<ion-tabs [selectedIndex]="mySelectedIndex" name="conference">\n\n  <ion-tab [root]="tab1Root" tabTitle="公告" tabIcon="calendar" tabUrlPath="conference-schedule"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="签到" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="定位" tabIcon="map"></ion-tab>\n\n  <ion-tab [root]="tab4Root" tabTitle="关于" tabIcon="information-circle"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\tabs-page\tabs-page.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\tabs-page\tabs-page.html"*/'<ion-tabs [selectedIndex]="mySelectedIndex" name="conference">\n\n  <ion-tab [root]="tab1Root" tabTitle="公告" tabIcon="calendar" tabUrlPath="conference-schedule"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="签到" tabIcon="contacts"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="地图" tabIcon="map"></ion-tab>\n\n  <ion-tab [root]="tab4Root" tabTitle="关于" tabIcon="information-circle"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\project\CAS\project\mobile\class-attendance-system\src\pages\tabs-page\tabs-page.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* NavParams */]])
     ], TabsPage);

@@ -6,12 +6,52 @@
     <ion-title>签到</ion-title>
   </ion-navbar>
 </ion-header>
+<span id='lat2'></span><span id='lng2'></span><span id='address2'></span><br />
+  <span id='locationId'></span>
 <ion-content class="outer-content speaker-list">
-  <ion-card-content class="outer-content">
-    <button ion-item   (click)="getLocation()">
-      <h3>location</h3>
-    </button>
-    <!-- <ion-list>
+  <!-- <button ion-item >
+      <h3 >（点击课程签到）</h3>
+  </button> -->
+  
+  <!-- <ion-card-content class="outer-content"  *ngFor="let session of shownSessions">
+    
+    <ion-list>
+      
+      <button ion-item  >
+        <h3>{{session.course_name}}</h3>
+      </button>
+
+    </ion-list>
+  </ion-card-content>
+</ion-content> -->
+
+<ion-card  *ngIf="shownSessions.length == 0">
+    <ion-card-content>
+      <p>暂无课程信息</p>
+    </ion-card-content>
+</ion-card>
+
+
+<div  *ngIf="shownSessions.length != 0">
+<ion-card *ngFor="let session of shownSessions">
+    <ion-item >
+      <ion-avatar item-start>
+        <img src="assets/img/icon.png" style="width:37px;height:37px;">
+      </ion-avatar>
+      <h2>课程：{{session.course_name}}</h2>
+    </ion-item>
+  
+    <img src="assets/img/course.jpg" style="width:50%;height:50%;">
+  
+    <ion-card-content>
+      <button  ion-button (click)="siginCourse(session.id)">签到</button>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+
+
+<!-- <ion-list>
       <button ion-item *ngFor="let session of sessions" (click)="goToSessionDetail(session)">
         <h3>{{session.name}}</h3>
       </button>
@@ -20,5 +60,3 @@
         <h3>About {{speaker.name}}</h3>
       </button>
     </ion-list> -->
-  </ion-card-content>
-</ion-content>
