@@ -190,20 +190,34 @@ public class SigninRestController {
 		String sql6="select * from kq_base_parameter;";
 		List<Map<String,Object>> base =kqClassNoticeService.findForJdbc(sql6);
 		boolean flag=isInDate(date, begin_time, begin_time, base.get(0).get("sigin_begin_time").toString(),  base.get(0).get("sigin_end_time").toString());
-		if (distance<=sdistance) {
+		if (distance<=sdistance) {															
 			KqAttendanceEntity kqAttendanceEntity=new KqAttendanceEntity();
 			kqAttendanceEntity.setCourseId(courseid);
 			Map<String,Object> map = kqClassNoticeService.findOneForJdbc("select * from t_s_base_user a where a.username = '"+studentid+"'");
 			kqAttendanceEntity.setStudentId(map.get("id").toString());
-			
-			//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");			
 			kqAttendanceEntity.setDate(new Date());
-			if (flag) {
-			kqAttendanceEntity.setType("1");//上课签到	
-			}else {
-			kqAttendanceEntity.setType("2");//下课签到
-			}
+			if (flag) { //上课签到				
+			kqAttendanceEntity.setType("4");//上课签到
 			kqClassNoticeService.save(kqAttendanceEntity);
+			}else {     //下课签到						
+			//String sql7="select * from kq_attendance where student_id='"+map.get("id").toString()+"' and course_id ='"+courseid+"'and date='"+new Date()+"'";
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+			String hql="from KqAttendanceEntity where studentId= '"+map.get("id").toString()+"' and courseId='"+courseid+"'and date ='"+sdf.format(new Date())+"'";
+			List<Object> list= kqClassNoticeService.findHql(hql);
+			//List<Object> list = kqClassNoticeService.findHql("from KqAttendanceEntity where studentId=?  and courseId=? and date = ?", map.get("id").toString(),courseid,new Date());
+			KqAttendanceEntity temp = new KqAttendanceEntity();
+			if(list.size() == 0){
+				kqAttendanceEntity.setType("3");//上课签到
+				kqClassNoticeService.save(kqAttendanceEntity);
+			}else{
+				temp = (KqAttendanceEntity) list.get(0);
+				temp.setType("1");
+				kqClassNoticeService.saveOrUpdate(temp);			
+			//kqAttendanceEntity.setType("2");//下课签到
+			}
+			
+			}
+			
 			//return true;
 			speakers.put("data", "误差距离："+distance+",签到成功");
 			speakers.put("isSign", true);
