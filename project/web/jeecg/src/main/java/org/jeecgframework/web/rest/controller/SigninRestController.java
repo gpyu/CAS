@@ -109,7 +109,7 @@ public class SigninRestController {
 				+" left join kq_timetable tt on tt.classnumber=ct.bein_time"
 				+" left join kq_timetable ttt on ttt.classnumber=ct.end_time"
 				+" left join kq_base_parameter tttt on 1=1"
-				+" left join kq_attendance att on att.course_id=t.id"
+				+" left join kq_attendance att on att.course_id=t.kq_course_info_id"
 				+" where t.course_status='1' and ct.week=date_format(curdate(),'%w') and"
 				+" (curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
 				+" or curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute))"
