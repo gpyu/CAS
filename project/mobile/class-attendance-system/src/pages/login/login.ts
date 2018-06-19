@@ -37,11 +37,12 @@ export class LoginPage {
       loader.present();
       this.dataService.login(this.login.username,this.login.password).then((result: any) => {
         loader.dismiss();
-        this.toast.create({ message: '登录成功', position: 'botton', duration: 3000 }).present();
+        this.toast.create({ message: '登录成功', position: 'bottom', duration: 3000 }).present();
         this.userData.login(this.login.username,result);
         this.navCtrl.push(TabsPage);
       }).catch((error: any) => {
-        this.toast.create({ message: '抱歉，网络异常：'+error.toString(), duration: 3000 }).present();
+        this.toast.create({ message: '登录失败：'+error.toString(), position: 'bottom', duration: 3000 }).present();
+        loader.dismiss();
     });
     }
   }

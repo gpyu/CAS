@@ -69,6 +69,7 @@ export class ConferenceApp {
     public storage: Storage,
     public splashScreen: SplashScreen
   ) {
+
     // navigator.geolocation.getCurrentPosition((position)=>{
     //   console.log("longitude"+position.coords.longitude+"\n latitude"+position.coords.latitude);
     //   let opts = {
@@ -90,6 +91,7 @@ export class ConferenceApp {
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
+        
         this.storage.get("lastLoginDate").then((lastLoginDate)=>{ 
           var hours =Math.floor((new Date().getTime() - Date.parse(lastLoginDate))/(3600*1000));
           if (hasSeenTutorial ) {
