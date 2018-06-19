@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title><t:mutiLang langKey="jeect.platform"/></title>
+    <title>课堂考勤系统</title>
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href="plug-in-ui/hplus/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
@@ -220,22 +220,6 @@
     <div id="right-sidebar">
         <div class="sidebar-container">
 
-            <ul class="nav nav-tabs navs-3">
-
-                <li class="active">
-                    <a data-toggle="tab" href="#tab-1">
-                        <i class="fa fa-gear"></i> 主题
-                    </a>
-                </li>
-               <li class=""><a data-toggle="tab" href="#tab-2">
-                   <i class="fa fa-comments-o" aria-hidden="true"></i>通知
-                </a>
-                </li>
-                <li><a data-toggle="tab" href="#tab-3">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>公告
-                </a>
-                </li>
-            </ul>
 
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
