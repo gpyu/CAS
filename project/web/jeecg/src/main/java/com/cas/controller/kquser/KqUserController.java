@@ -215,7 +215,10 @@ public class KqUserController extends BaseController {
 
         cq.add();
         
-        List<TSRoleUser> roleUserList = this.systemService.findByProperty(TSRoleUser.class, "roleid", "2c93308162e6ac190162e6be5c0e0007");
+        //List<TSRoleUser> roleUserList = this.systemService.findByProperty(TSRoleUser.class, "roleid", "2c93308162e6ac190162e6be5c0e0007");
+        TSRole tsRole=new TSRole();
+        tsRole.setId("2c93308162e6ac190162e6be5c0e0007");
+        List<TSRoleUser> roleUserList = this.systemService.findByProperty(TSRoleUser.class, "TSRole", tsRole);
         String[] userids = new String[roleUserList.size()];
         for(int i=0;i<roleUserList.size();i++){
         	userids[i] = roleUserList.get(i).getTSUser().getId();
@@ -223,6 +226,10 @@ public class KqUserController extends BaseController {
         /*if(roleUserList.size()>0){
         	cq.in("id",roleUserList);
         }*/
+        if(roleUserList.size()>0){
+        	cq.in("id",userids);
+        }
+        cq.add();
         this.systemService.getDataGridReturn(cq, true);
         // update-start--Author:gaofeng Date:20140822 for：添加用户的角色展示
         List<TSUser> cfeList = new ArrayList<TSUser>();
@@ -230,14 +237,20 @@ public class KqUserController extends BaseController {
             if (o instanceof TSUser) {
                 TSUser cfe = (TSUser) o;
                 if (cfe.getId() != null && !"".equals(cfe.getId())) {
-                    List<TSRoleUser> roleUser = systemService.findByProperty(TSRoleUser.class, "TSUser.id", cfe.getId());
-                    if (roleUser.size() > 0) {
+                   // List<TSRoleUser> roleUser = systemService.findByProperty(TSRoleUser.class, "TSUser.id", cfe.getId());
+                    //if (roleUser.size() > 0) {
+                	TSUser tsUser=new TSUser();
+                	tsUser.setId(cfe.getId());
+                    List<TSRoleUser> roleUser = systemService.findByProperty(TSRoleUser.class, "TSUser", tsUser);
+                   TSRoleUser tsRoleUser=roleUser.get(0);                    
+                    if (roleUser.size() > 0&& tsRoleUser.getTSRole().getId().equals("2c93308162e6ac190162e6be5c0e0007")) {
                         String roleName = "";
                         for (TSRoleUser ru : roleUser) {
-                            roleName += ru.getTSRole().getRoleName() + ",";
+                        	roleName += ru.getTSRole().getRoleName() + ",";
                         }
                         roleName = roleName.substring(0, roleName.length() - 1);
                         cfe.setUserKey(roleName);
+                        cfeList.add(cfe);
                     }
                 }
             }
@@ -270,19 +283,18 @@ public class KqUserController extends BaseController {
 		//update--end--author:zhangjiaqiang date:20180223 for:TASK #2531 【改造】用户列表不显示接口类型的用户
         
         //update-start--Author:zhangguoming  Date:20140827 for：添加 组织机构 查询条件
-        String orgIds = request.getParameter("orgIds");
-        List<String> orgIdList = extractIdListByComma(orgIds);
-        // 获取 当前组织机构的用户信息
-        if (!CollectionUtils.isEmpty(orgIdList)) {
-            CriteriaQuery subCq = new CriteriaQuery(TSUserOrg.class);
-            subCq.setProjection(Property.forName("tsUser.id"));
-            subCq.in("tsDepart.id", orgIdList.toArray());
-            subCq.add();
-
-            cq.add(Property.forName("id").in(subCq.getDetachedCriteria()));
+        
+        cq.add();
+        TSRole tsRole=new TSRole();
+        tsRole.setId("2c93308162e6ac190162e6bdf6720005");
+        List<TSRoleUser> roleUserList = this.systemService.findByProperty(TSRoleUser.class, "TSRole", tsRole);
+        String[] userids = new String[roleUserList.size()];
+        for(int i=0;i<roleUserList.size();i++){
+        	userids[i] = roleUserList.get(i).getTSUser().getId();
         }
-        //update-end--Author:zhangguoming  Date:20140827 for：添加 组织机构 查询条件
-
+        if(roleUserList.size()>0){
+        	cq.in("id",userids);
+        }
         cq.add();
         this.systemService.getDataGridReturn(cq, true);
         // update-start--Author:gaofeng Date:20140822 for：添加用户的角色展示
@@ -292,18 +304,22 @@ public class KqUserController extends BaseController {
                 TSUser cfe = (TSUser) o;
                 if (cfe.getId() != null && !"".equals(cfe.getId())) {
                     List<TSRoleUser> roleUser = systemService.findByProperty(TSRoleUser.class, "TSUser.id", cfe.getId());
-                    if (roleUser.size() > 0) {
+                    //if (roleUser.size() > 0) {
+                    TSRoleUser tsRoleUser=roleUser.get(0); 
+                    if (roleUser.size() > 0&&tsRoleUser.getTSRole().getId().equals("2c93308162e6ac190162e6bdf6720005")) {
                         String roleName = "";
                         for (TSRoleUser ru : roleUser) {
                             roleName += ru.getTSRole().getRoleName() + ",";
                         }
                         roleName = roleName.substring(0, roleName.length() - 1);
                         cfe.setUserKey(roleName);
+                        cfeList.add(cfe);
                     }
                 }
-                cfeList.add(cfe);
+                
             }
         }
+        dataGrid.setResults(cfeList);
 //		update-end--Author:gaofeng Date:20140822 for：添加用户的角色展示
         TagUtil.datagrid(response, dataGrid);
 	}
