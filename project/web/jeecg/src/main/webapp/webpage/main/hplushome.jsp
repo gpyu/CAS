@@ -60,11 +60,11 @@
                                 </div>
                                 <div id="v52" class="panel-collapse collapse in">
                                     <div class="panel-body">
-                                     	<span class="alert alert-warning">   路建宁		170327104</span>
-                                       <span class="alert alert-warning">  张佳俊		170327079</span>
-                                       <span class="alert alert-warning">  周小根		170327086</span>
-                                       <span class="alert alert-warning">  冯丹阳		170327091</span>
-                                       <span class="alert alert-warning">  余国鹏		170327076</span>
+                                     	<p style="font-size:18px; width:200px;float:left">   路建宁		170327104</p>
+                                       <p style="font-size:18px; width:200px;float:left">张佳俊		170327079</p>
+                                       <p style="font-size:18px; width:200px;float:left">周小根		170327086</p>
+                                       <p style="font-size:18px; width:200px;float:left">冯丹阳		170327091</p>
+                                       <p style="font-size:18px; width:200px;float:left">余国鹏		170327076</p>
                                 </div>
                         </div>
                         </div>

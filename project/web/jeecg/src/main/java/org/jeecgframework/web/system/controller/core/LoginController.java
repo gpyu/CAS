@@ -459,7 +459,7 @@ public class LoginController extends BaseController{
 				}
 				return null;
 			}
-
+			System.out.println(sysTheme.getIndexPath());
 			return sysTheme.getIndexPath();
 		} else {
 
