@@ -113,7 +113,7 @@ public class SigninRestController {
 				+" where t.course_status='1' and ct.week=date_format(curdate(),'%w') and"
 				+" (curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
 				+" or curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute))"
-				+" and att.type=4"
+				+" and ( att.type=4 or att.date is null) "
 				+" and us.username='"+username+"';";
 		
 //		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
