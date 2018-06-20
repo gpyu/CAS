@@ -113,7 +113,7 @@ public class SigninRestController {
 				+" where t.course_status='1' and ct.week=date_format(curdate(),'%w') and"
 				+" (curtime() between date_sub(tt.begin_time, interval (tttt.sigin_begin_time ) minute) and date_add(tt.begin_time, interval (tttt.sigin_end_time) minute)"
 				+" or curtime() between date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time) minute))"
-				+" and ( att.type=4 or att.date is null) "
+				+" and (att.date is null or( att.type=4  &&  curtime()  between     date_sub(ttt.end_time, interval (tttt.signoff_begin_time ) minute) and date_add(ttt.end_time, interval (tttt.signoff_end_time  ) minute))) "
 				+" and us.username='"+username+"';";
 		
 //		String sql = "select c.realname,b.course_name,b.ID,d.id from kq_course_student a "
@@ -207,7 +207,7 @@ public class SigninRestController {
 			//List<Object> list = kqClassNoticeService.findHql("from KqAttendanceEntity where studentId=?  and courseId=? and date = ?", map.get("id").toString(),courseid,new Date());
 			KqAttendanceEntity temp = new KqAttendanceEntity();
 			if(list.size() == 0){
-				kqAttendanceEntity.setType("3");//上课签到
+				kqAttendanceEntity.setType("3");//签到
 				kqClassNoticeService.save(kqAttendanceEntity);
 			}else{
 				temp = (KqAttendanceEntity) list.get(0);
